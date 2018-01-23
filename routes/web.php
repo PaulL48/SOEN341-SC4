@@ -23,6 +23,10 @@ Route::get('/philippe', function () {
     return view('philippe');
 });
 
+Route::get('/paul', function() {
+	return view('paul');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
