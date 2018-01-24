@@ -27,6 +27,10 @@ Route::get('/paul', function() {
 	return view('paul');
 });
 
+Route::get('/paulAgain', function() {
+	return view('paulAgain');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
