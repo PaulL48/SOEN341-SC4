@@ -11,18 +11,18 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/index', function () {
     return view('index');
 });
-
-Route::get('/'. function ()) {
-    return view('nirmal')
-}
+Route::get('/philippe', function () {
+    return view('philippe');
+});
+Route::get('/nirmal', function () {
+    return view('nirmal');
+});
 
 
 Auth::routes();
