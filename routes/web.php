@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,10 +20,10 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/philippe', function () {
-    return view('philippe');
-});
+Route::get('/'. function ()) {
+    return view('nirmal')
+}
+
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
