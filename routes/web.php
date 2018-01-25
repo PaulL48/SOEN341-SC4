@@ -27,10 +27,11 @@ Route::get('/paul', function() {
 	return view('paul');
 });
 
-Route::get('/paulAgain', function() {
-	return view('paulAgain');
+Route::get('/xing',function() {
+	return view('xing');
 });
 
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
