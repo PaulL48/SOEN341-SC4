@@ -7,20 +7,57 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "test": "mocha --compilers js:babel-core/register --require ./resources/assets/test/helpers.js --require ./resources/assets/test/dom.js --recursive \"./resources/**/*.test.js*\"",
+        "test:watch": "npm test -- --watch"
     },
     "devDependencies": {
-        "axios": "^0.17.1",
         "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.0",
+        "babel-eslint": "^8.2.1",
+        "babel-jest": "^22.1.0",
+        "babel-plugin-transform-export-extensions": "^6.22.0",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
         "babel-preset-stage-3": "^6.24.1",
+        "babel-register": "^6.26.0",
         "bootstrap-sass": "^3.3.7",
+        "chai": "^4.1.2",
         "cross-env": "^5.1.3",
-        "jquery": "^3.3.0",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "eslint": "^4.16.0",
+        "eslint-config-standard": "^11.0.0-beta.0",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-loader": "^1.9.0",
+        "eslint-plugin-html": "^4.0.2",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-react": "^7.5.1",
+        "eslint-plugin-standard": "^3.0.1",
+        "jsdom": "^11.6.1",
         "laravel-mix": "^1.7.2",
         "lodash": "^4.17.4",
+        "mocha": "^5.0.0",
+        "prop-types": "^15.6.0",
         "react": "^16.2.0",
-        "react-dom": "^16.2.0"
+        "react-addons-test-utils": "^15.6.2",
+        "react-dom": "^16.2.0",
+        "react-test-renderer": "^16.2.0",
+        "regenerator-runtime": "^0.11.1",
+        "sinon": "^4.2.1"
+    },
+    "dependencies": {
+        "axios": "^0.17.1",
+        "jquery": "^3.3.1",
+        "moment": "^2.20.1",
+        "react-router-dom": "^4.2.2"
+    },
+    "jest": {
+        "snapshotSerializers": [
+            "enzyme-to-json/serializer"
+        ]
     }
 }
