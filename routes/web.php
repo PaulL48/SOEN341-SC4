@@ -35,6 +35,10 @@ Route::get('/xing',function(){
 	return view('xing');
 });
 
+Route::get('/khang', function() {
+	return view('khang');
+});
+
 Auth::routes();
 
 
