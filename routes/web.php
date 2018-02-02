@@ -23,10 +23,17 @@ Route::get('/philippe', function () {
     return view('philippe');
 });
 
+
 Route::get('/nirmal', function () {
     return view('nirmal');
 });
 
+  
+Route::get('/xing',function(){
+	return view('xing');
+});
+
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');
