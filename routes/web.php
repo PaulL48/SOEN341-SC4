@@ -23,6 +23,10 @@ Route::get('/philippe', function () {
     return view('philippe');
 });
 
+Route::get('/paul', function() {
+	return view('paul');
+});
+
 Route::get('/rahimuz', function(){
 	return view('rahimuz');
 });
