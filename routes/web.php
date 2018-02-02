@@ -23,11 +23,13 @@ Route::get('/philippe', function () {
     return view('philippe');
 });
 
+Route::get('/rahimuz', function(){
+	return view('rahimuz');
+});
 
 Route::get('/nirmal', function () {
     return view('nirmal');
 });
-
   
 Route::get('/xing',function(){
 	return view('xing');
