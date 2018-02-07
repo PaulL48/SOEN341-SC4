@@ -17,8 +17,6 @@ class SOEN341 extends Component{
             <Router>
               <Switch>
                 <Route exact path="/" component={App}/>
-                <Route path="/login" component={Login}/>
-                <Route path="/register" component={Register}/>
               </Switch>
             </Router> 
           );

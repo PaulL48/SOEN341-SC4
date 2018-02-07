@@ -15,9 +15,8 @@ export default class App extends Component {
                     <div className="flex-center position-ref full-height">
                         <div className="top-right links">
                             <Link to="/">Home</Link>
-                            <Link to="/login">React Login</Link>
-                            <Link to="/register">Register</Link>
-                            <a href="login">PHP Login(Make it the same)</a>
+                            <a href="login">Login</a>
+                            <a href="register">Register</a>
                         </div>
                     <div className="content">
                         <div className="title m-b-md">

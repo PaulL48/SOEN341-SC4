@@ -2639,9 +2639,7 @@ var SOEN341 = function (_Component) {
         _react2.default.createElement(
           _reactRouterDom.Switch,
           null,
-          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app2.default }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _auth.Login }),
-          _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _auth.Register })
+          _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _app2.default })
         )
       );
     }
@@ -23616,19 +23614,14 @@ var App = function (_Component) {
                             'Home'
                         ),
                         _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            { to: '/login' },
-                            'Login'
-                        ),
-                        _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            { to: '/register' },
-                            'Register'
-                        ),
-                        _react2.default.createElement(
                             'a',
                             { href: 'login' },
                             'Login'
+                        ),
+                        _react2.default.createElement(
+                            'a',
+                            { href: 'register' },
+                            'Register'
                         )
                     ),
                     _react2.default.createElement(
@@ -23903,7 +23896,10 @@ var Header = exports.Header = function (_PureComponent) {
     function Header() {
         _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).call(this));
+
+        _this.state = {};
+        return _this;
     }
 
     _createClass(Header, [{
