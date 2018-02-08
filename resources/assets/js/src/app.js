@@ -17,6 +17,7 @@ export default class App extends Component {
                             <Link to="/">Home</Link>
                             <a href="login">Login</a>
                             <a href="register">Register</a>
+                            <Link to="/test" >Unauthenticated Route handle by react</Link>
                         </div>
                     <div className="content">
                         <div className="title m-b-md">

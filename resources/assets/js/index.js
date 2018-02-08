@@ -6,7 +6,7 @@ import {
   } from 'react-router-dom';
   import ReactDOM from 'react-dom';
   import App from './src/app';
-  import {Login,Register} from './src/auth';
+  import {Test} from './src/screens';
   import '../sass/app.scss';
   require('./bootstrap');
 
@@ -17,6 +17,7 @@ class SOEN341 extends Component{
             <Router>
               <Switch>
                 <Route exact path="/" component={App}/>
+                <Route path="/test" component={Test}/>
               </Switch>
             </Router> 
           );

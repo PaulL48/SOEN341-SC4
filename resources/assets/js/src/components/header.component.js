@@ -31,24 +31,9 @@ export class Header extends PureComponent{
                             &nbsp;
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                                <li><Link to="/login">Login</Link></li>
-                                <li><Link to="/register">Register</Link></li>
-                                <li className="dropdown">
-                                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                        <span className="caret"></span>
-                                    </a>
-
-                                    <ul className="dropdown-menu" role="menu">
-                                        <li>
-                                            <a href="{{ route('logout') }}">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style={{display: 'none'}}>   
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <li><a href="login">Login</a></li>
+                                <li><a href="register">Register</a></li>
+                                
                         </ul>
                     </div>
                 </div>

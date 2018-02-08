@@ -19,5 +19,7 @@
             </div>
         </div>
     </div>
+    <div id="component"></div>
 </div>
 @endsection
+
