@@ -27,7 +27,9 @@ mix.webpackConfig({
         }
       ]
     }
-  })
+  });
 
-mix.react('resources/assets/js/app.js', 'public/js')
+mix.react('resources/assets/js/index.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.react('resources/assets/js/src/components/text.component.js', 'public/js');
