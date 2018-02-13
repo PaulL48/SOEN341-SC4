@@ -51,3 +51,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get( '/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
+
+//votes
+Route::post('vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
+Route::post('vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
