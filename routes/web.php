@@ -29,8 +29,10 @@ Route::get('/xing',function(){
 
 Auth::routes();
 
+Route::get('/question/ask', function(){
+    return view('AskQuestion');
+})->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get( '/{any}', function () {
     return view('welcome');
