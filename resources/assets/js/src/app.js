@@ -24,8 +24,6 @@ export default class App extends Component {
                         </div>
                     <div className="content">
                         <Voting/>
-                        <Icon type="caret-up" style={{fontSize:30}} />
-                        <Button type="primary">Primary</Button>
                     </div>
                 </div>
             </div>
