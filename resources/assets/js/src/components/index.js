@@ -1,2 +1,4 @@
 export * from './header.component';
-export * from './listC';
+export * from './voting.component';
+export * from './upvoteButton.component';
+export * from './downvoteButton.component';

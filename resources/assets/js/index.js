@@ -8,6 +8,7 @@ import {
   import App from './src/app';
   import {Test} from './src/screens';
   import '../sass/app.scss';
+  import 'antd/dist/antd.min.css';
   require('./bootstrap');
 
   
