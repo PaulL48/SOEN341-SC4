@@ -32,6 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
+//voting on a question or answer
 Route::post('vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
 Route::post('vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
 
