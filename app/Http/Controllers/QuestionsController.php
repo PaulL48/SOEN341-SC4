@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use DB;
 use App\Quotation;
+use App\Question;
 use Illuminate\Http\Request;
 
 class QuestionsController extends BaseController
@@ -31,6 +32,14 @@ class QuestionsController extends BaseController
         
         return redirect()->route('index');
 
+    }
+    /**
+     * Get the top questions according to votes
+     * GET /questions/top
+     * @return Redirect
+     */
+    public function top() {
+        return view('questions.top', ['questions' => Question::top(), 'page_title' => 'Top Questions', 'sort' =>'top']);
     }
     
 }
