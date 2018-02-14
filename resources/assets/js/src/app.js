@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-<<<<<<< HEAD
 import {Voting} from './components';
 import {Button,Icon} from 'antd';
 
-=======
-import ReactDOM from 'react-dom';
-import {ListC} from './components';
->>>>>>> master
 
 
 export default class App extends Component {
@@ -17,7 +12,11 @@ export default class App extends Component {
             
         };
     }
-    render() {  
+
+    componentDidMount(){
+       
+    }
+    render() {
         return (
             <div className="container" >
                     <div className="flex-center position-ref full-height">
@@ -27,16 +26,7 @@ export default class App extends Component {
                             <a href="register">Register</a>
                         </div>
                     <div className="content">
-<<<<<<< HEAD
                         <Voting/>
-=======
-                        <div className="title m-b-md">
-                            Questions
-                        </div>
-                        <div className="QuestionsHP">
-                            <ListC/>
-                        </div>
->>>>>>> master
                     </div>
                 </div>
             </div>

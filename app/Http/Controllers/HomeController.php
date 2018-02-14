@@ -23,6 +23,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ]);
+    }
+
+    function CheckUserInfo(Request $request){
+        return response()->json([
+            'name' => 'Abigail',
+            'state' => 'CA'
+        ]);
     }
 }

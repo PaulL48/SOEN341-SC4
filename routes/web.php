@@ -23,11 +23,10 @@ Route::get('/questions', 'QuestionsRetrievalController@index');
 
 Auth::routes();
 
-Route::get( '/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
+Route::get('/question/ask', function(){
+    return view('AskQuestion');
+})->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );

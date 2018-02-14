@@ -75,7 +75,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{mix('js/text.component.js')}}" ></script>
 </body>
 </html>
