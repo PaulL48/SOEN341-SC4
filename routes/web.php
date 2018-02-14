@@ -19,18 +19,18 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/philippe', function () {
-    return view('philippe');
-});
-
-Route::get('/xing',function(){
-	return view('xing');
-});
+Route::get('/questions', 'QuestionsRetrievalController@index');
 
 Auth::routes();
 
+Route::get( '/{any}', function () {
+    return view('welcome');
+})->where('any', '.*');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Accepting Answer
+Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
 Route::get( '/{any}', function () {
     return view('welcome');
