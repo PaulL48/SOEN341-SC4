@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import {Voting} from './components';
+import {Button,Icon} from 'antd';
+
 
 
 export default class App extends Component {
@@ -20,17 +23,9 @@ export default class App extends Component {
                             <Link to="/test" >Unauthenticated Route handle by react</Link>
                         </div>
                     <div className="content">
-                        <div className="title m-b-md">
-                            Laravel
-                        </div>
-                        <div className="links">
-                            <a href="https://laravel.com/docs">Documentation</a>
-                            <a href="https://laracasts.com">Laracasts</a>
-                            <a href="https://laravel-news.com">News</a>
-                            <a href="https://forge.laravel.com">Forge</a>
-                            <a href="https://github.com/laravel/laravel">GitHub</a>
-                            
-                        </div>
+                        <Voting/>
+                        <Icon type="caret-up" style={{fontSize:30}} />
+                        <Button type="primary">Primary</Button>
                     </div>
                 </div>
             </div>
