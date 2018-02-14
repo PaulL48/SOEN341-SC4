@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Axios from 'axios';
 
 
 export default class App extends Component {
@@ -12,11 +11,7 @@ export default class App extends Component {
     }
 
     componentDidMount(){
-        Axios.get('checkUser').then((res)=>{
-            console.log(res);
-        }).catch((err)=>{
-            console.log(err);
-        });
+       
     }
     render() {
         return (

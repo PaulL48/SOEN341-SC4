@@ -17,10 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/checkUser', function(){
-    return response()->json([
-        'data' => 'test'
-    ]);
-});
 
 Route::get('home', 'HomeController@index');
