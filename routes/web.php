@@ -19,36 +19,11 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/philippe', function () {
-    return view('philippe');
-});
-
-Route::get('/paul', function() {
-	return view('paul');
-});
-
-Route::get('/rahimuz', function(){
-	return view('rahimuz');
-});
-
-Route::get('/nirmal', function () {
-    return view('nirmal');
-});
-  
-Route::get('/xing',function(){
-	return view('xing');
-});
-
-Route::get('/khang', function() {
-	return view('khang');
-});
-
 Auth::routes();
 
 Route::get( '/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
-
 
 Route::get('/home', 'HomeController@index')->name('home');
 
