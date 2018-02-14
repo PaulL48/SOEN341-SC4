@@ -19,13 +19,7 @@ Route::get('/index', function () {
     return view('index');
 });
 
-Route::get('/philippe', function () {
-    return view('philippe');
-});
-
-Route::get('/xing',function(){
-	return view('xing');
-});
+Route::get('/questions', 'QuestionsRetrievalController@index');
 
 Auth::routes();
 
@@ -33,6 +27,9 @@ Route::get('/question/ask', function(){
     return view('AskQuestion');
 })->middleware('auth');
 
+
+//Accepting Answer
+Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
 Route::get( '/{any}', function () {
     return view('welcome');
