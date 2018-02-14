@@ -25,6 +25,6 @@ class QuestionsRetrievalController extends Controller
         }
 
         // The view returned here is to be replaced by the actual view
-        return view('welcome', compact('questions'));
+        return $questions;
     }
 }
