@@ -17,10 +17,10 @@ class QuestionsRetrievalController extends Controller
         // Repopulate author id with author name
         foreach($questions as &$question)
         {
-            $question->user = DB::table('users')->where('id', '=', $question->author)->value('name');
+            $question->author = DB::table('users')->where('id', '=', $question->author)->value('name');
             if( !isset($question->user) )
             {
-                $question->user = 'Non-Existent User';
+                $question->author = 'Non-Existent User';
             }
         }
 
@@ -28,3 +28,5 @@ class QuestionsRetrievalController extends Controller
         return $questions;
     }
 }
+
+?>

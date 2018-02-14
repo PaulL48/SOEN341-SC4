@@ -43,6 +43,8 @@ Route::get('/khang', function() {
 	return view('khang');
 });
 
+Route::get('/questions', 'QuestionsRetrievalController@index');
+
 Auth::routes();
 
 Route::get( '/{any}', function () {
@@ -58,4 +60,3 @@ Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerCont
 Route::get( '/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
-
