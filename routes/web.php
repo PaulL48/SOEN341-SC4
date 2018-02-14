@@ -45,9 +45,17 @@ Route::get('/khang', function() {
 
 Auth::routes();
 
+Route::get( '/{any}', function () {
+    return view('welcome');
+})->where('any', '.*');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Accepting Answer
+Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
 Route::get( '/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
+
