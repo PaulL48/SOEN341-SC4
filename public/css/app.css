@@ -8388,7 +8388,7 @@ body {
 }
 
 .title {
-  font-size: 60px;
+  font-size: 48px;
 }
 
 .links > a {
@@ -8402,7 +8402,7 @@ body {
 }
 
 .m-b-md {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .ant-list-item {
@@ -8410,7 +8410,6 @@ body {
   padding: 20px;
   border: 1px solid;
 }
-
 .AnswerAccept {
   margin-top: 300px;
   text-align: center;
@@ -8466,5 +8465,34 @@ body {
   color: #4ACA5D;
   font-size: 80px;
   margin:200px;
+.QRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 80vw;
+  border-bottom: 2px solid #69c0ff;
+  padding: 10px;
+}
+
+.QAuthor {
+  text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70vw;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.QTitle {
+  width: 10vw;
 }
 
