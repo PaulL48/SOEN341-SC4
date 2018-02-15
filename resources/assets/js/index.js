@@ -2,12 +2,13 @@ import React,{Component} from 'react';
 import {
     BrowserRouter as Router,
     Route,
-    Switch
+    Switch,
   } from 'react-router-dom';
   import ReactDOM from 'react-dom';
   import App from './src/app';
   import {Test} from './src/screens';
   import '../sass/app.scss';
+  import 'antd/dist/antd.min.css';
   require('./bootstrap');
 
   
