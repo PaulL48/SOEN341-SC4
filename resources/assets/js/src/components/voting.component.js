@@ -14,11 +14,17 @@ export class Voting extends Component {
   }
 
   componentDidMount(){
-    Axios.get('/vote/question').then((res)=>{
+    Axios.request({
+      url:'/vote/question',
+      method:'post',
+      data:{
+          
+      }
+  }).then((res)=>{
       console.log(res);
-    }).catch((err)=>{
+  }).catch((err)=>{
       console.log(err);
-    });
+  });
   }
   
   handleCount(){

@@ -1,12 +1,12 @@
 <?php
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Vote;
-class VoteController extends Controller
+class VotesController extends Controller
 {
-    public function vote_question()
+    public function vote_question(Request $req)
     {
         return Response::json(Vote::vote(Auth::id(), Request::get('question_id'), Request::get('vote'), 'question_id'));
     }
@@ -14,4 +14,5 @@ class VoteController extends Controller
     {
         return Response::json(Vote::vote(Auth::id(), Request::get('answer_id'), Request::get('vote'), 'answer_id'));
     }
+
 }
