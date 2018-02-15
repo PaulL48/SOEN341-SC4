@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use DB;
 use App\Quotation;
+use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -32,6 +33,14 @@ class QuestionsController extends BaseController
         return response()->json([
             'result' => 'success'
         ]);
+    }
+    /**
+     * Get the top questions according to votes
+     * GET /questions/top
+     * @return Redirect
+     */
+    public function top() {
+        return view('questions.top', ['questions' => Question::top(), 'page_title' => 'Top Questions', 'sort' =>'top']);
     }
     
 }
