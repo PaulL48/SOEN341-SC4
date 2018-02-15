@@ -8388,7 +8388,7 @@ body {
 }
 
 .title {
-  font-size: 60px;
+  font-size: 48px;
 }
 
 .links > a {
@@ -8402,12 +8402,29 @@ body {
 }
 
 .m-b-md {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .ant-list-item {
   text-align: left;
   padding: 20px;
   border: 1px solid;
+}
+
+.QRow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 1111px;
+  border-bottom: 2px solid #69c0ff;
+  padding: 10px;
+}
+
+.QAuthor {
+  text-align: right;
 }
 

@@ -31,6 +31,9 @@ Route::get('/question/ask', function(){
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
+//Add question 
+Route::post('/ask', 'QuestionsController@insert');
+
 Route::get( '/{any}', function () {
     return view('welcome');
 })->where('any', '.*');
