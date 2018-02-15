@@ -1,51 +1,5 @@
 import React, { Component } from 'react';
-
-
-const test=[
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-    {
-        title: 'Life',
-        author: 'Jake',
-        created_at: '12-08-2030',
-        resolved: false  
-    },
-];
-
+import {Voting} from './';
 
 export class ListC extends Component {
 
@@ -59,11 +13,13 @@ export class ListC extends Component {
 
     render() {
         return(
-           <div className="QTable"  >{test.map((currentItem,index)=>{
+           <div className="QTable"  >{this.props.data.map((currentItem,index)=>{
                 return(
-                    <div className="QRow" key={index}>
-                        <span className="QTitle">{currentItem.title}</span>
-                        <span className="QResolved">{currentItem.resolved}</span>
+                    <div className="QRow" key={index} >
+                        <div style={{display:'flex',flexDirection:'row',alignItems:'center',width:500}}>
+                            <Voting/>
+                            <span className="QTitle" style={{textAlign:'right',width:300}}>{currentItem.title}</span>
+                        </div>
                         <span className="QAuthor">Created by {currentItem.author} at {currentItem.created_at}</span>        
                     </div>
                 );

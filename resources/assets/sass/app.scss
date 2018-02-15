@@ -66,12 +66,19 @@ html, body {
 
 .QRow {
     display: flex;
-    flex-direction: column;
-    width: 1111px;
+    flex-direction: row;
+    width: 80vw;
     border-bottom: 2px solid #69c0ff;
     padding: 10px;
 }
 
 .QAuthor {
     text-align: right;
+    display: flex;
+    width:70vw;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.QTitle{
+    width: 10vw;
 }
