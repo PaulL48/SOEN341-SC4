@@ -10,27 +10,28 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use DB;
 use App\Quotation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class QuestionsController extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
     function insert(Request $req){
+
+        
         $title = $req->input('title');
         $question = $req->input('question');
-        $user_id = $req->input('user_id');
+        $user_id = Auth::id();
         $resolved = $req->input('resolved');
         
-        $data = array('title'=>$title, 'question'=> $question, 'user_id'=>$user_id, 'resolved'=> $resolved);
+        $data = array('title'=>$title, 'question'=> $question, 'user_id'=>$user_id, 'resolved'=> $resolved,'created_at' => Carbon::now()->format('Y-m-d H:i:s'));
         
         DB::table('questions')->insert($data);
-        
-        DB::table('questions')->insert([
-            'created_at' => Carbon::now()->format('Y-m-d H:i:s');
-        ]);
-        
-        return redirect()->route('index');
 
+        return response()->json([
+            'result' => 'success'
+        ]);
     }
     
 }

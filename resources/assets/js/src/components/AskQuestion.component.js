@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Quill from 'react-quill';
 import {Button} from 'antd';
+import Axios from 'axios';
 import 'react-quill/dist/quill.snow.css';
 import 'antd/dist/antd.css';
 import './AskQuestion.scss';
@@ -13,7 +14,8 @@ class AskQuestion extends Component {
         super();
         this.state = {
             title:'',
-            question: ''
+            question: '',
+            resolved:false
         };
         
     }
@@ -26,7 +28,20 @@ class AskQuestion extends Component {
     }
 
     handleSubmit(){
-        console.log(this.state.question);
+        Axios.request({
+            url:'/ask',
+            method:'post',
+            data:{
+                title: this.state.title,
+                question: this.state.question,
+                resolved: this.state.resolved
+            }
+        }).then((res)=>{
+            console.log(res);
+            window.location.href = "http://pmlabs.cagg";
+        }).catch((err)=>{
+            console.log(err);
+        });
     }
    
 
