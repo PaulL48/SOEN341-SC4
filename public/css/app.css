@@ -8415,16 +8415,30 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  width: 1111px;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 80vw;
   border-bottom: 2px solid #69c0ff;
   padding: 10px;
 }
 
 .QAuthor {
   text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 70vw;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.QTitle {
+  width: 10vw;
 }
 

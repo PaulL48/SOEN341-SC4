@@ -40,7 +40,6 @@ export default class App extends Component {
                         </div>
                     <div className="content">
                         <ListC data={this.state.data}/>
-                        <Voting/>
                     </div>
                 </div>
             </div>
