@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {UpButton,Button2} from './';
+import Axios from 'axios';
 
 
 
@@ -10,6 +11,14 @@ export class Voting extends Component {
       count:0, downCount:0
     };
     
+  }
+
+  componentDidMount(){
+    Axios.get('/vote/question').then((res)=>{
+      console.log(res);
+    }).catch((err)=>{
+      console.log(err);
+    });
   }
   
   handleCount(){

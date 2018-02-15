@@ -23,23 +23,20 @@ Route::get('/questions', 'QuestionsRetrievalController@index');
 
 Auth::routes();
 
-Route::get( '/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('/question/ask', function(){
     return view('AskQuestion');
 })->middleware('auth');
 
+Route::get('/question/answer', function(){
+    return view('AnswerQuestion');
+})->middleware('auth');
+
+//voting on a question or answer
+Route::post('/vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
+Route::post('/vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
 
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
-
-//voting on a question or answer
-Route::post('vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
-Route::post('vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
 
 //Add question 
 Route::post('/ask', 'QuestionsController@insert');
