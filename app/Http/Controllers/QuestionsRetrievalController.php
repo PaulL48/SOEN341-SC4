@@ -18,7 +18,7 @@ class QuestionsRetrievalController extends Controller
         foreach($questions as &$question)
         {
             $question->author = DB::table('users')->where('id', '=', $question->author)->value('name');
-            if( !isset($question->user) )
+            if( !isset($question->author) )
             {
                 $question->author = 'Non-Existent User';
             }
