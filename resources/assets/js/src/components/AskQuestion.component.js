@@ -38,7 +38,7 @@ class AskQuestion extends Component {
             }
         }).then((res)=>{
             console.log(res);
-            window.location.href = "http://pmlabs.cagg";
+            window.location.href = "http://pmlabs.ca";
         }).catch((err)=>{
             console.log(err);
         });
