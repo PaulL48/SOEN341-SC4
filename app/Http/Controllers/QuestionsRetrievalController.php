@@ -10,7 +10,7 @@ class QuestionsRetrievalController extends Controller
     public function index()
     {
         // Retrieve question and author id
-        $questions = DB::table('questions')->select('title', 'user_id as author', 'question', 'created_at', 'resolved')
+        $questions = DB::table('questions')->select('id','title', 'user_id as author', 'question', 'created_at', 'resolved')
                                            ->orderBy('created_at')
                                            ->get();
 

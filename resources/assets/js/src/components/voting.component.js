@@ -3,6 +3,8 @@ import {UpButton,Button2} from './';
 import Axios from 'axios';
 
 
+const upvote = "upVote";
+const downvote = "downVote";
 
 export class Voting extends Component {
   constructor(){
@@ -14,11 +16,16 @@ export class Voting extends Component {
   }
 
   componentDidMount(){
+    
+  }
+  
+  handleVote(id,vote){
     Axios.request({
       url:'/vote/question',
       method:'post',
       data:{
-          
+          id: id,
+          vote: vote
       }
   }).then((res)=>{
       console.log(res);
@@ -26,35 +33,21 @@ export class Voting extends Component {
       console.log(err);
   });
   }
-  
-  handleCount(){
-    this.setState({
-      count:this.state.count+1
-    });
-  }
-  handleCount2(){
-    this.setState({
-      downCount:this.state.downCount+1
-    });
-  }
   render() {
+    const {id} = this.props;
     return (
-      <div className="App">
-         
-          <div style={{display:'flex',flexDirection:'row'}}>
-            <UpButton handleFunction={()=>this.handleCount()}/> 
-              <span style={{fontSize:40}}> 
-                {this.state.count} 
-              </span>
-          </div> 
-
-          <div style={{display:'flex',flexDirection:'row'}}>
-             <Button2 handleFunction={()=>this.handleCount2()}/>
-              <span style={{fontSize:40}}> 
-                {this.state.downCount} 
-              </span>
+      <div className="App" style={{display:'flex',flexDirection:'row' , justifyContent:'center',alignItems:'center'}}>
+          <div style={{display:'flex',flexDirection:'column'}}>
+            <div style={{display:'flex',flexDirection:'row'}}>
+              <UpButton handleFunction={()=>this.handleVote(id,upvote)}/> 
+            </div> 
+            <div style={{display:'flex',flexDirection:'row'}}>
+              <Button2 handleFunction={()=>this.handleVote(id,downvote)}/>
+            </div>
           </div>
-         
+          <span style={{fontSize:40}}> 
+                {this.state.count} 
+          </span>
       </div>
     );
   }

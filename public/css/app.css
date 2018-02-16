@@ -8410,61 +8410,7 @@ body {
   padding: 20px;
   border: 1px solid;
 }
-.AnswerAccept {
-  margin-top: 300px;
-  text-align: center;
-}
-.AnswerAccept-best {
-  width:30px;
-  height:30px;
-  line-height: 1;
-}
-.AnswerAccept-h1{
-  margin-top: 2px;
-  height: 26px;
-  font-size: 20px;
-  color: #35b558;
-  font-Family:Microsoft YaHei;
-  font-Weight:bolder;
-  margin-right: 500px;
-}
-.AnswerAccept-accept {
-  font-size: 14px;
-  color: #33b358;
-  border: 1px solid #cfd7dc;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-  display: inline-block;
-  font-Family:Microsoft YaHei;
-  font-Weight:bolder;
-  margin-left: 10px;
-  margin-top:250px;
-}
-.AnswerAccept-reject {
-  font-size: 14px;
-  color: #33b358;
-  border: 1px solid #cfd7dc;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-  display: inline-block;
-  font-Family:Microsoft YaHei;
-  font-Weight:bolder;
-  margin-left: 450px;
-  margin-top:250px;
-}
-.AnswerAccept.answer-best {
-  width: 21px;
-  height: 28px;
-  display: inline-block;
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  color: #4ACA5D;
-  font-size: 80px;
-  margin:200px;
+
 .QRow {
   display: -webkit-box;
   display: -ms-flexbox;
