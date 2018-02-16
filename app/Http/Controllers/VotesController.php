@@ -29,7 +29,12 @@ class VotesController extends Controller
     {
         $question = DB::table('questions')->where('id', $req->input('id'));
 
-        return $question->value('vote');
+        $vote = $question->value('vote');
+
+        return $req;
+        return response()->json([
+            'count' =>  $vote
+        ]);
     }
 
 }

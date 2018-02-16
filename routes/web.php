@@ -34,6 +34,7 @@ Route::get('/question/answer', function(){
 //voting on a question or answer
 Route::post('/vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
 Route::post('/vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
+Route::get('/vote/question/count', array( 'before'=>'csfr','uses'=>'VotesController@getVoteCount' ) );
 
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
