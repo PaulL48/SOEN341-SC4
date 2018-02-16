@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-use App\Vote;
+use DB;
 class VotesController extends Controller
 {
     public function vote_question(Request $req)
