@@ -13,10 +13,10 @@ class VotesController extends Controller
         $question = DB::table('questions')->where('id', $req->input('id'));
         $voteCount = $question->value('vote');
 
-        if(Request::get('vote')=='upVote'){
+        if($req->input('vote')=='upVote'){
             $question->update(['vote' => $voteCount+1]);
         }
-        elseif(Request::get('vote')=='downVote'){
+        elseif($req->input('vote')=='downVote'){
             $question->update(['vote' => $voteCount-1]);
         }
     }
