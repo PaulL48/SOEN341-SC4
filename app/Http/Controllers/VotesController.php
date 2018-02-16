@@ -13,16 +13,23 @@ class VotesController extends Controller
         $question = DB::table('questions')->where('id', $req->input('id'));
         $voteCount = $question->value('vote');
 
-        if(Request::get('vote')=='upVote'){
+        if($req->input('vote')=='upVote'){
             $question->update(['vote' => $voteCount+1]);
         }
-        elseif(Request::get('vote')=='downVote'){
+        elseif($req->input('vote')=='downVote'){
             $question->update(['vote' => $voteCount-1]);
         }
     }
     public function vote_answer()
     {
         //return Response::json(Vote::vote(Auth::id(), Request::get('answer_id'), Request::get('vote'), 'answer_id'));
+    }
+
+    public function getVoteCount(Request $req)
+    {
+        $question = DB::table('questions')->where('id', $req->input('id'));
+
+        return $question->value('vote');
     }
 
 }
