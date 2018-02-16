@@ -24,6 +24,7 @@ export default class App extends Component {
     componentWillMount(){
        Axios.get('/questions').then((res)=>{
            this.setState({data:res.data});
+           console.log(res);
        }).catch((err)=>{
             console.log(err);
        });

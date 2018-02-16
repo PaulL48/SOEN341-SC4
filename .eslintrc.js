@@ -28,6 +28,8 @@ module.exports = {
     'generator-star-spacing': 0,
     //keep syntax uniform
     "semi": ["error", "always"],
+
+    'react/prop-types':0,
     
     // allow console during development
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
