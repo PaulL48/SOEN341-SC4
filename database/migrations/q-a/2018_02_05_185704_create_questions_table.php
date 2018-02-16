@@ -18,6 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->string('title');
             $table->string('question');
             $table->integer('user_id');
+            $table->integer('vote');
             $table->boolean('resolved');
             $table->timestamps();
         });
