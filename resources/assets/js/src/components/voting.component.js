@@ -10,13 +10,24 @@ export class Voting extends Component {
   constructor(){
     super();
     this.state={
-      count:0, downCount:0
+      count:0,
     };
     
   }
 
   componentDidMount(){
     
+
+    Axios.request({
+      url:'/vote/question/count',
+      data:{
+          id: this.props.id,
+      }
+  }).then((res)=>{
+      console.log(res);
+  }).catch((err)=>{
+      console.log(err);
+  });
   }
   
   handleVote(id,vote){
