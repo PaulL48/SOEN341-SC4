@@ -25,4 +25,11 @@ class VotesController extends Controller
         //return Response::json(Vote::vote(Auth::id(), Request::get('answer_id'), Request::get('vote'), 'answer_id'));
     }
 
+    public function getVoteCount(Request $req)
+    {
+        $question = DB::table('questions')->where('id', $req->input('id'));
+
+        return $question->value('vote');
+    }
+
 }
