@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import Quill from 'react-quill';
 import {Button} from 'antd';
 import {Header} from '../../../components';
@@ -26,8 +27,10 @@ export class AskQuestion extends Component {
         
     }
 
-    componentDidMount(){
-        
+    componentWillMount(){
+        if(!this.props.isLoggedIn){
+            this.props.history.push("/Login");
+        }
     }
 
     handleInputText(e,delta,source,content){
@@ -104,7 +107,7 @@ export class AskQuestion extends Component {
     }
 }
 
-export const AskQuestionScreen = connect(mapStateToProps,mapDispatchToProps)(AskQuestion);
+export const AskQuestionScreen = withRouter(connect(mapStateToProps,mapDispatchToProps)(AskQuestion));
 
 
 
