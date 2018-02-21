@@ -16,23 +16,5 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA'
-        ]);
-    }
 
-    function CheckUserInfo(Request $request){
-        return response()->json([
-            'name' => 'Abigail',
-            'state' => 'CA'
-        ]);
-    }
 }

@@ -18,16 +18,16 @@ export class Voting extends Component {
   componentDidMount(){
     
 
-    Axios.request({
-      url:'/vote/question/count',
-      data:{
-          id: this.props.id,
-      }
-  }).then((res)=>{
-      console.log(res);
-  }).catch((err)=>{
-      console.log(err);
-  });
+  //   Axios.request({
+  //     url:'/vote/question/count',
+  //     data:{
+  //         id: this.props.id,
+  //     }
+  // }).then((res)=>{
+  //     console.log(res);
+  // }).catch((err)=>{
+  //     console.log(err);
+  // });
   }
   
   handleVote(id,vote){

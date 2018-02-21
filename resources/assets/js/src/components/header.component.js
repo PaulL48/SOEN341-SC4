@@ -1,7 +1,16 @@
 import React,{PureComponent} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-export class Header extends PureComponent{
+const mapStateToProps = state =>({
+    isLoggedIn: state.auth.isLoggedIn,
+    currentUser : state.auth.currentUser
+});
+const mapDispatchToProps = dispatch =>({
+    
+});
+
+class HeaderComponent extends PureComponent{
 
     constructor(){
         super();
@@ -9,6 +18,22 @@ export class Header extends PureComponent{
             
         };
     }
+
+    handleAuth(){
+        if(this.props.isLoggedIn){
+            return(
+                <li key="1"><a>Profile</a></li>
+            );
+        }else{  
+            return(
+            [
+                <li key="1"><a href="Login">Login</a></li>,
+                <li key="2"><a href="Register">Register</a></li>
+            ]
+        );
+        }
+    }
+    
     render(){
         return(
             <div id="app">
@@ -22,7 +47,7 @@ export class Header extends PureComponent{
                             <span className="icon-bar"></span>
                         </button>   
                         <Link className="navbar-brand" to="/">
-                            Laravel
+                            Soen341SC4
                         </Link>
                     </div>
 
@@ -31,9 +56,7 @@ export class Header extends PureComponent{
                             &nbsp;
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                                <li><a href="login">Login</a></li>
-                                <li><a href="register">Register</a></li>
-                                
+                            {this.handleAuth()}            
                         </ul>
                     </div>
                 </div>
@@ -42,3 +65,5 @@ export class Header extends PureComponent{
         );
     }
 }
+
+export const Header = connect(mapStateToProps,mapDispatchToProps)(HeaderComponent);
