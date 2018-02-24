@@ -46,8 +46,10 @@ class AnswerQuestion extends Component {
 
     handleSubmit(){
         if(!this.props.isLoggedIn){
-            this.props.history.push("/Login");
             alert('You need to be signed in to answer!');
+            window.location.href = "/Login"; // window.location.href will refresh the browser by default which is needed to refresh the csrf token in this case
+        }else if(this.props.history.location.state.author === this.props.currentUser.user.name){
+            alert('You can\'t answer your own question!');
         }else{
             answerQuestion(this.props.history.location.state.id,this.state.answer);
             setTimeout(()=>{ // fake asyncronous method

@@ -1,13 +1,14 @@
 import React,{PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {signOutAction} from '../screens';
 
 const mapStateToProps = state =>({
     isLoggedIn: state.auth.isLoggedIn,
     currentUser : state.auth.currentUser
 });
 const mapDispatchToProps = dispatch =>({
-    
+    signOutActionDispatch : () => dispatch(signOutAction()),
 });
 
 class HeaderComponent extends PureComponent{
@@ -19,10 +20,20 @@ class HeaderComponent extends PureComponent{
         };
     }
 
+
+    handleSignout(){
+        this.props.signOutActionDispatch();
+    }
+
+
     handleAuth(){
         if(this.props.isLoggedIn){
             return(
-                <li key="1"><a>Profile</a></li>
+                [
+                    <li key="1"><a>Profile</a></li>,
+                    <li key="2"><a onClick={()=>this.handleSignout()}>Log out</a></li>
+                ]
+               
             );
         }else{  
             return(

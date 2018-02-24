@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {ListC} from './components';
 import Axios from 'axios';
-import {userSignout,checkIfUserIsLoggedIn,checkCurrentuser} from './api';
 import {signOutAction} from './screens';
 
 
