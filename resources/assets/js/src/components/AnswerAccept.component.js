@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import imgSrc from './bestAnswer.png';
-import './AnswerAccept.css';
 
 
-class AnswerAccept extends Component {
+export class AnswerAccept extends Component {
     render() {
     return (
       <div className="AnswerAccept">
@@ -17,6 +16,4 @@ class AnswerAccept extends Component {
     );
   }
 }
-
-export default AnswerAccept;
 

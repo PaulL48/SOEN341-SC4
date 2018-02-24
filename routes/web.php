@@ -16,6 +16,7 @@ Auth::routes();
 Route::post('/vote/answer', array( 'before'=>'csfr','uses'=>'VotesController@vote_answer' ) );
 Route::post('/vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
 Route::get('/vote/question/count', array( 'before'=>'csfr','uses'=>'VotesController@getVoteCount' ) );
+Route::get('/vote/answer/count', array( 'before'=>'csfr','uses'=>'VotesController@getAnswerVoteCount' ) );
 
 //Get available questions
 Route::get('/questions', 'QuestionsRetrievalController@index');
@@ -30,17 +31,16 @@ Route::get('/checkUser','UserController@checkUser');
 //Add question 
 Route::post('/ask', 'QuestionsController@insert');
 
-Route::get( '/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
-Route::post('/vote/question', array( 'before'=>'csfr','uses'=>'VotesController@vote_question' ) );
-Route::get('/vote/question/count', array( 'before'=>'csfr','uses'=>'VotesController@getVoteCount' ) );
+//Add Answer for a question 
+Route::post('/answer','AnswerController@insert');
 
-//Accepting Answer
-Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
+//Get Available answers
+Route::get('/answers','AnswerController@getAnswers');
 
-//Add question 
-Route::post('/ask', 'QuestionsController@insert');
+//Set/unset AcceptedAnswer
+
+Route::post('/vote/answer/accepted', 'AnswerController@setAcceptedAnswer');
+Route::post('/vote/answer/removeAccepted','AnswerController@unsetAcceptedAnswer');
 
 Route::get( '/{any}', function () {
     return view('welcome');

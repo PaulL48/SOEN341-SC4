@@ -21,17 +21,20 @@ export const authReducer = (state = initialState, action) =>{
         case CURRENT_USER.ERROR:
         return{
             ...state,
-            error: action.err
+            error: action.err,
+            isLoggingIn: false
         };
         case CURRENT_USER.PENDING:
         return{
             ...state,
             error: null,
+            isLoggingIn: true,
         };
         case CURRENT_USER.SUCCESS:
         return{
             ...state,
-            currentUser: action.res.data
+            currentUser: action.res.data,
+            isLoggingIn: false
         };
         case CURRENT_USER_LOGGED_IN.ERROR:
         return{

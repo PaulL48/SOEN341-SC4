@@ -27,8 +27,8 @@ class HeaderComponent extends PureComponent{
         }else{  
             return(
             [
-                <li key="1"><a href="Login">Login</a></li>,
-                <li key="2"><a href="Register">Register</a></li>
+                <li key="1"><a href="/Login">Login</a></li>,
+                <li key="2"><a href="/Register">Register</a></li>
             ]
         );
         }

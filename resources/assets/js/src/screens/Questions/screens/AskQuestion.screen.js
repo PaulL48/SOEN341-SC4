@@ -51,7 +51,7 @@ export class AskQuestion extends Component {
             }
         }).then((res)=>{
             console.log(res);
-            window.location.href = "http://pmlabs.ca";
+            this.props.history.push("/");
         }).catch((err)=>{
             console.log(err);
         });

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {UpButton,Button2} from './';
-import {getVoteCount,updateVoteCount} from '../api';
+import {getAnswerVoteCount,updateAnswerVoteCount} from '../api';
 import Axios from 'axios';
 
 
 const upvote = "upVote";
 const downvote = "downVote";
 
-export class Voting extends Component {
+export class AnswerVoting extends Component {
   constructor(){
     super();
     this.state={
@@ -18,17 +18,17 @@ export class Voting extends Component {
 
   componentDidMount(){
     setTimeout(()=>{ // fake asyncronous method since we need to wait for the props to be fully updated with the id's
-    this.props.handleRequest().then((res)=>{
-      this.setState({count: res.data.count});
-    }).catch((err)=>{
-        console.log(err);
-    });
+        getAnswerVoteCount(this.props.id).then((res)=>{
+            this.setState({count: res.data.count});
+        }).catch((err)=>{
+            console.log(err);
+        });
     },500);
   }
   
   handleVote(id,vote){
-    updateVoteCount(id,vote).then(()=>{
-      getVoteCount(this.props.id).then((res)=>{
+    updateAnswerVoteCount(id,vote).then(()=>{
+        getAnswerVoteCount(this.props.id).then((res)=>{
           this.setState({count: res.data.count});
       }).catch((err)=>{
           console.log(err);
