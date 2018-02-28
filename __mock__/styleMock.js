@@ -1,0 +1,1 @@
+module.exports = {}; //fixed a weird css bug while running test scripts
