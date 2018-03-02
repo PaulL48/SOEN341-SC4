@@ -1,0 +1,28 @@
+.AskQuestion-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.inner-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+.title-wrapper{
+    width: 50vw;
+}
+.title-input input{
+    width: 50vw;
+    margin-top: 5px;
+    margin-bottom: 15px;
+       
+}
+.Quill{
+    width: 50vw;
+}
+.submitQuestion{
+    margin-top: 10px;
+}
+.ql-editor{
+    height:50vh;
+}

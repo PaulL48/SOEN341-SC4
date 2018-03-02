@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {UpButton,Button2} from './';
+import {getVoteCount,updateVoteCount} from '../api';
 import Axios from 'axios';
 
 
@@ -16,30 +17,22 @@ export class Voting extends Component {
   }
 
   componentDidMount(){
-    
-
-    Axios.request({
-      url:'/vote/question/count',
-      data:{
-          id: this.props.id,
-      }
-  }).then((res)=>{
-      console.log(res);
-  }).catch((err)=>{
-      console.log(err);
-  });
+    setTimeout(()=>{ // fake asyncronous method since we need to wait for the props to be fully updated with the id's
+      this.props.handleRequest().then((res)=>{
+        this.setState({count: res.data.count});
+      }).catch((err)=>{
+        console.log(err);
+      });
+    },500);
   }
   
   handleVote(id,vote){
-    Axios.request({
-      url:'/vote/question',
-      method:'post',
-      data:{
-          id: id,
-          vote: vote
-      }
-  }).then((res)=>{
-      console.log(res);
+    updateVoteCount(id,vote).then(()=>{
+      getVoteCount(this.props.id).then((res)=>{
+          this.setState({count: res.data.count});
+      }).catch((err)=>{
+          console.log(err);
+      });
   }).catch((err)=>{
       console.log(err);
   });

@@ -8,7 +8,6 @@ class VotesController extends Controller
 {
     public function vote_question(Request $req)
     {
-        //return Response::json(Vote::vote(Auth::id(), Request::get('question_id'), Request::get('vote'), 'question_id'));
 
         $question = DB::table('questions')->where('id', $req->input('id'));
         $voteCount = $question->value('vote');
@@ -20,9 +19,17 @@ class VotesController extends Controller
             $question->update(['vote' => $voteCount-1]);
         }
     }
-    public function vote_answer()
+    public function vote_answer(Request $req)
     {
-        //return Response::json(Vote::vote(Auth::id(), Request::get('answer_id'), Request::get('vote'), 'answer_id'));
+        $question = DB::table('answers')->where('id', $req->input('id'));
+        $voteCount = $question->value('votes');
+
+        if($req->input('vote')=='upVote'){
+            $question->update(['votes' => $voteCount+1]);
+        }
+        elseif($req->input('vote')=='downVote'){
+            $question->update(['votes' => $voteCount-1]);
+        }
     }
 
     public function getVoteCount(Request $req)
@@ -31,7 +38,18 @@ class VotesController extends Controller
 
         $vote = $question->value('vote');
 
-        return $req;
+        return response()->json([
+            'count' =>  $vote
+        ]);
+    }
+
+
+    public function getAnswerVoteCount(Request $req)
+    {
+        $question = DB::table('answers')->where('id', $req->input('id'));
+
+        $vote = $question->value('votes');
+
         return response()->json([
             'count' =>  $vote
         ]);

@@ -24,9 +24,11 @@ class Answer extends Model
      */
     public static function get_sorted($question_id) {
         $answer = Answer::where('question_id', '=', $question_id)->get();
-        return $answer->sortByDesc(function ($answer) {
-            return $answer->votes->sum('vote');
-        });
+        return response()->json([
+            'data' => $answer->sortByDesc(function ($answer) {
+                return $answer->votes->sum('vote');
+            })
+        ]);
     }
     /**
      * Get answers and sort by vote sum()
