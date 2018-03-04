@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Header,AnswerVoting} from '../../../components';
+import {Header,AnswerVoting,Voting} from '../../../components';
 import {connect} from 'react-redux';
 import Quill from 'react-quill';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -173,7 +173,7 @@ class AnswerQuestion extends Component {
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
-                    <span className="questionVoting"></span>
+                    <span className="questionVoting"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
                     <span className="AnswerText" style={{fontSize:20}}>{this.props.history.location.state.title}</span>
                     <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
                     {this.handleDisplayAnswers()}
