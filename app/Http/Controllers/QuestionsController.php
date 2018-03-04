@@ -42,5 +42,50 @@ class QuestionsController extends BaseController
     public function top() {
         return view('questions.top', ['questions' => Question::top(), 'page_title' => 'Top Questions', 'sort' =>'top']);
     }
+
+    public function retrieve() {
+        // Retrieve question and author id
+        $questions = DB::table('questions')->select('id','title', 'user_id as author', 'question', 'created_at', 'resolved')
+                                           ->orderBy('vote', 'desc')
+                                           ->get();
+
+        // Repopulate author id with author name
+        foreach($questions as &$question)
+        {
+            $question->author = DB::table('users')->where('id', '=', $question->author)->value('name');
+            if( !isset($question->author) )
+            {
+                $question->author = 'Non-Existent User';
+            }
+        }
+
+        // The view returned here is to be replaced by the actual view
+        return $questions;
+    }
+
+    public function insertSuggestion(Request $req){
+
+        // Get question
+        $question = DB::table('questions')->where('id', $req->input('id'));
+        $currentDBSuggestion = $question->value('suggestion');
+
+        // Receive Question from Front-End
+        $suggestion = $req->input('suggestion');
+
+        // Update Suggestion in Database
+        if($currentDBSuggestion == null){
+            $question->update(['suggestion' => $suggestion]);
+        }
+        else {
+            echo "A suggestion has already been placed";
+        }
+    }
+
+    public function retrieveSuggestion(){
+        $question = DB::table('questions')->where('id', $req->input('id'));
+        $currentDBSuggestion = $question->value('suggestion');
+
+        return $currentDBSuggestion;
+    }
     
 }

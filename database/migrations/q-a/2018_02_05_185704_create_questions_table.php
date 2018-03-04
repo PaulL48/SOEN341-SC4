@@ -19,8 +19,9 @@ class CreateQuestionsTable extends Migration
             $table->string('question');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('vote');
-            $table->boolean('resolved');
+            $table->integer('vote')->default(0);
+            $table->boolean('resolved')->default(0);
+            $table->string('suggestion');
             $table->timestamps();
         });
     }
