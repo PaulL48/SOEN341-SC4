@@ -19,7 +19,7 @@ Route::get('/vote/question/count', array( 'before'=>'csfr','uses'=>'VotesControl
 Route::get('/vote/answer/count', array( 'before'=>'csfr','uses'=>'VotesController@getAnswerVoteCount' ) );
 
 //Get available questions
-Route::get('/questions', 'QuestionsRetrievalController@index');
+Route::get('/questions', 'QuestionsController@retrieve');
 
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
