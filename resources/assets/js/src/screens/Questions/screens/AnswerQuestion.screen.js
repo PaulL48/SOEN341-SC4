@@ -173,7 +173,8 @@ class AnswerQuestion extends Component {
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
-                    <span className="AnswerText" style={{fontSize:20}}>question</span>
+                    <span className="questionVoting"></span>
+                    <span className="AnswerText" style={{fontSize:20}}>{this.props.history.location.state.title}</span>
                     <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
                     {this.handleDisplayAnswers()}
                     <span className="AnswerText">Your answer</span>
