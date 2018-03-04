@@ -128,11 +128,11 @@ class AnswerQuestion extends Component {
         if(this.state.currentAnswers.length !== 0){
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div key={index} style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                <div key={index} style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',border:'thin solid black'}}>
                     <AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
                     <div style={{display:'flex',flexDirection:'column'}}>
-                        <span className="AnswerText" style={{fontSize:30,margin:30}}>Answer #{index+1}</span>
-                        <span className="AnswerText">{currentItem.answer}</span>
+                        <span className="AnswerText" style={{fontSize:20,margin:30, fontWeight:"normal"}}>Answer #{index+1}</span>
+                        <span className="AnswerText4">{currentItem.answer}</span>
                     </div>
                     {this.handleAcceptedLogo(currentItem)}
                 </div>
@@ -173,10 +173,13 @@ class AnswerQuestion extends Component {
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
-                    <span className="AnswerText" style={{fontSize:20}}>question</span>
-                    <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
+                    <span className="AnswerText" style={{fontSize:20, fontWeight:"normal"}}>question you have asked!</span>
+                    <span className="AnswerText" style={{fontSize:30,textAlign:'center',color:"blue" }}>{this.props.history.location.state.question}</span>
                     {this.handleDisplayAnswers()}
+                    <br/>
+
                     <span className="AnswerText">Your answer</span>
+                    
                     <Quill
                     theme="snow"
                     modules={this.modules}
