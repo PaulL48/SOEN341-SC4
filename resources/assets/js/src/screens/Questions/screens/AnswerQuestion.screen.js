@@ -129,13 +129,23 @@ class AnswerQuestion extends Component {
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
                 <div key={index} style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',border:'thin solid black'}}>
-                    <AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
-                    <div style={{display:'flex',flexDirection:'column'}}>
-                        <span className="AnswerText" style={{fontSize:20,margin:30, fontWeight:"normal"}}>Answer #{index+1}</span>
-                        <span className="AnswerText4">{currentItem.answer}</span>
-                    </div>
-                    {this.handleAcceptedLogo(currentItem)}
+                  <table >
+                    <tr>
+                        <td>
+                            <AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
+                        </td>
+                        <td> 
+                            <div style={{display:'flex',flexDirection:'column'}}>
+                                <span className="AnswerText" style={{fontSize:20,margin:30, fontWeight:"normal"}}>Answer #{index+1}</span>
+                                <span className="AnswerText4">{currentItem.answer}</span>
+                            </div>
+                            {this.handleAcceptedLogo(currentItem)}                          
+                        </td>
+                    </tr>
+                </table>  
+                   
                 </div>
+                
                 );
             }
         );
