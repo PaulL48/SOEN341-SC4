@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {ListC} from './components';
+import {Header,ListC} from './components';
 import Axios from 'axios';
 import {signOutAction} from './screens';
 
@@ -64,13 +64,19 @@ class App extends Component {
     render() {
         return (
             <div className="container" >
+                <Header/>
                     <div className="flex-center position-ref full-height">
-                        <div className="top-right links">
-                            <Link to="/">SOEN341-SC4</Link>
-                            <Link to="/question/ask">Ask a question</Link>
-                            {this.handleAuth()}
-                        </div>
                     <div className="content">
+                        <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
+                        <div>
+                            <div className="DisplayRecentQuestion">
+                                Here is the most recent Question
+                            </div>
+                            
+                            <div className="DisplayRecentQuestion2">
+                                The Questions
+                            </div>
+                        </div>
                         <ListC data={this.state.data}/>
                     </div>
                 </div>
