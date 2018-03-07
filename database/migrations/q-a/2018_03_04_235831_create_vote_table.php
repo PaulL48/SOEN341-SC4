@@ -15,11 +15,10 @@ class CreateVoteTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('voted')->default(0);
+            $table->boolean('upVote')->default(0);
+            $table->boolean('downVote')->default(0);
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions');
-            $table->integer('answer_id')->unsigned();
-            $table->foreign('answer_id')->references('id')->on('answers');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
