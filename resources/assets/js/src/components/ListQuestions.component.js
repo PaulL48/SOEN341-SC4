@@ -15,7 +15,7 @@ export class ListC extends Component {
 
     render() {
         return(
-            <div className="QTable"  >{this.props.data.map((currentItem,index)=>{
+           <div className="QTable"  >{this.props.data.map((currentItem,index)=>{
                 return(
                     <div className="QRow" key={index} >
                         <div style={{display:'flex',flexDirection:'row',alignItems:'center',width:500}}>
