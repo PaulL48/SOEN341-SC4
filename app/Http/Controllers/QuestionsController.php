@@ -63,6 +63,13 @@ class QuestionsController extends BaseController
         // The view returned here is to be replaced by the actual view
         return $questions;
     }
+
+    public function retrieveQuestion(Request $req){
+        $question = DB::table('questions')->where('id',$req->input('id'))->get();
+        return response()->json([
+            'question' => $question
+        ]);
+    }
     
     public function insertSuggestion(Request $req){
 
@@ -80,16 +87,17 @@ class QuestionsController extends BaseController
     }
 
     public function retrieveSuggestion(Request $req){
-        $question = DB::table('questions')->where('id', $req->input('question_id'));
-        $currentDBSuggestion = $question->value('suggestion');
+        $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
 
-        return $currentDBSuggestion;
+        return response()->json([
+            'suggestion' => $suggestion
+        ]);
     }
 
     //this method changes the question to the suggestion and sets that field to null
     public function acceptSuggestion(Request $req){
         $question = DB::table('questions')->where('id', $req->input('question_id'));
-        $suggestion = $req->input('question_id');
+        $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
 
         $question->update(['question' => $suggestion]); //set the question to the suggestion
         $question->update(['suggestion' => null]); //set the suggestion to null

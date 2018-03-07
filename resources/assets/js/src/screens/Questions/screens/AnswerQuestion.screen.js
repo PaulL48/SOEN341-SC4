@@ -5,14 +5,16 @@ import Quill from 'react-quill';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {Button} from 'antd';
 import './AnswerQuestion.scss';
-import {answerQuestion,getAnswers,setAcceptedAnswer,unsetAcceptedAnswer, suggestQuestion, getSuggestion} from '../../../api';
+import {answerQuestion,getAnswers,setAcceptedAnswer,unsetAcceptedAnswer, suggestQuestion, getSuggestion, acceptSuggestion, declineSuggestion} from '../../../api';
+import {getQuestionAction} from '../question.action'
 
 const mapStateToProps = state =>({
     isLoggedIn: state.auth.isLoggedIn,
-    currentUser : state.auth.currentUser
+    currentUser : state.auth.currentUser,
+    currentQuestion : state.question.currentQuestion
 });
 const mapDispatchToProps = dispatch =>({
-    
+    getQuestionActionDispatch : (id)=>{dispatch(getQuestionAction(id))}
 });
 
 
@@ -24,12 +26,13 @@ class AnswerQuestion extends Component {
             currentAnswers: [],
             hasAcceptedAnswer: false,
             hasSuggestion: false,
-            isAuthor: false,
             suggestion:'',
         };
         
     }
     componentWillMount(){
+        const {getQuestionActionDispatch} = this.props;
+        getQuestionActionDispatch(this.props.history.location.state.id);
     }
     componentDidMount(){
         console.log(this.props);
@@ -39,7 +42,15 @@ class AnswerQuestion extends Component {
         }).catch((err)=>{
             console.log(err);
         });
-        this.handleSuggestionText();
+        getSuggestion(this.props.history.location.state.id).then((res)=>{
+            console.log(res)
+            this.setState({
+                hasSuggestion : !(res.data.suggestion===""),
+                suggestion: res.data.suggestion
+            })
+           
+        })
+        
     }
 
     handleInputText(e,delta,source,content){
@@ -156,7 +167,7 @@ class AnswerQuestion extends Component {
     }}  
 
     showSuggestionBox(){
-        if(!this.state.hasAcceptedAnswer){
+        if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer && !(this.props.history.location.state.author === this.props.currentUser.user.name)){
             return (
                 <div className="quillSuggestionBox">
                 <Quill
@@ -170,44 +181,45 @@ class AnswerQuestion extends Component {
             <Button className="submitQuestion" type="primary" onClick={()=>this.handleSuggestion()}>Suggest Edit</Button>
             </div>
             )
-        }else{
+        }
+        else if(this.state.hasSuggestion){
             return (
-                <span>Suggestion: {this.state.suggestion} </span>
+            <div>
+            <span className="AnswerText">Suggestion: {this.state.suggestion} </span>
+            {this.props.history.location.state.author === this.props.currentUser.user.name &&
+                <div>
+                <Button className="acceptSuggestion" type="primary" 
+                onClick={()=>this.handleAcceptedSuggestion()}>Accept Suggestion</Button>
+                <Button className="declineSuggestion" type="primary" 
+                onClick={()=>this.handleDeclinedSuggestion()}>Decline Suggestion</Button>
+                </div>
+            }
+            </div>
+            
             )
         }
+    
     }
+
+    handleAcceptedSuggestion(){
+        acceptSuggestion(this.props.history.location.state.id)
+        this.setState({hasSuggestion:false})
+        this.props.getQuestionActionDispatch(this.props.history.location.state.id)
+
+    }
+    handleDeclinedSuggestion(){
+        declineSuggestion(this.props.history.location.state.id)
+        this.setState({hasSuggestion:false})
+    }
+
+
     handleSuggestion(){
         if(this.props.history.location.state.author === this.props.currentUser.user.name){
             alert('You can\'t suggest a change to your own question!');
         }else{
             suggestQuestion(this.props.history.location.state.id, this.state.suggestion);
-        }
-    }
-
-    handleSuggestionText(){
-        if(this.props.history.location.state.author === this.props.currentUser.user.name){
-            getSuggestion(this.props.history.location.state.id).then((res)=>{
-                console.log(res)
-                if(res.data !== null){
-                    this.setState({
-                        suggestion: res.data,
-                        hasSuggestion: true,
-                        isAuthor: true
-                    })
-                }
-                console.log(this.state)
-            })
-
-        }
-    }
-
-    handleAcceptSuggestion(){
-        if(this.props.history.location.state.author === this.props.currentUser.user.name){
-            return(
-                <div className="suggestionText">
-                    {this.handleSuggestionText()}
-                </div>
-            )
+            this.setState({hasSuggestion:true, suggestion:this.state.suggestion})
+           
         }
     }
 
@@ -237,8 +249,7 @@ class AnswerQuestion extends Component {
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
                     <span className="AnswerText" style={{fontSize:20}}>question</span>
-                    <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
-                    {this.state.isAuthor && this.state.hasSuggestion && this.showSuggestionBox()}
+                    <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.currentQuestion.question}</span>
                     {this.showSuggestionBox()}
                     {this.handleDisplayAnswers()}
                     <span className="AnswerText">Your answer</span>
