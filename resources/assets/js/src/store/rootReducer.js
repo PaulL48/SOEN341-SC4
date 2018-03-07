@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
-import {authReducer} from '../screens';
+import {authReducer,questionReducer} from '../screens';
 
 export const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    question: questionReducer
 });
