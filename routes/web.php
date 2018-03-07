@@ -25,10 +25,16 @@ Route::get('/questions', 'QuestionsController@retrieve');
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
 //Suggest a change to the Question
-Route::post('/suggest', array( 'before'=>'csrf','uses'=>'QuestionsController@suggestChange'));
+Route::post('/insertSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@insertSuggestion'));
 
 //Get an existing suggestion
-//Route::get('/getSuggestion')
+Route::get('/retrieveSuggestion', 'QuestionsController@retrieveSuggestion');
+
+//Accept the change to the question
+Route::post('/acceptSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@acceptSuggestion'));
+
+//Decline the change to the question
+Route::post('/declineSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@declineSuggestion'));
 
 //Check if the current user is Logged in
 Route::get('/check','UserController@checkIfAuthenticated');

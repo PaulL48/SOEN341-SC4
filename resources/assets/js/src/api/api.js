@@ -31,7 +31,7 @@ export const answerQuestion = (question_id,answer) =>{
 export const suggestQuestion = (question_id, suggestion) =>{
     return Axios.request({
         method:'post',
-        url:'/suggest',
+        url:'/insertSuggestion',
         data:{
             question_id,
             suggestion
@@ -41,7 +41,7 @@ export const suggestQuestion = (question_id, suggestion) =>{
 
 export const getSuggestion = (question_id) =>{
     return Axios.request({
-        url: '/getSuggestion',
+        url: '/retrieveSuggestion',
         params:{
             question_id,
         }

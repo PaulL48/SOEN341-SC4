@@ -35,13 +35,6 @@ class QuestionsController extends BaseController
         ]);
     }
 
-    function suggestChange(Request $req){
-        $question_id = $req->input('question_id');
-        $suggestion = $req->input('suggestion');
-        $question = DB::table('questions')->where('id', $question_id);
-
-        $question->update(['suggestion' => $suggestion]);
-    }
     /**
      * Get the top questions according to votes
      * GET /questions/top
@@ -70,30 +63,41 @@ class QuestionsController extends BaseController
         // The view returned here is to be replaced by the actual view
         return $questions;
     }
-
+    
     public function insertSuggestion(Request $req){
 
         // Get question
-        $question = DB::table('questions')->where('id', $req->input('id'));
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
         $currentDBSuggestion = $question->value('suggestion');
 
         // Receive Question from Front-End
         $suggestion = $req->input('suggestion');
 
         // Update Suggestion in Database
-        if($currentDBSuggestion == null){
+        //if($currentDBSuggestion == null){
             $question->update(['suggestion' => $suggestion]);
-        }
-        else {
-            echo "A suggestion has already been placed";
-        }
+        //}
     }
 
-    public function retrieveSuggestion(){
-        $question = DB::table('questions')->where('id', $req->input('id'));
+    public function retrieveSuggestion(Request $req){
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
         $currentDBSuggestion = $question->value('suggestion');
 
         return $currentDBSuggestion;
     }
+
+    //this method changes the question to the suggestion and sets that field to null
+    public function acceptSuggestion(Request $req){
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
+        $suggestion = $req->input('question_id');
+
+        $question->update(['question' => $suggestion]); //set the question to the suggestion
+        $question->update(['suggestion' => null]); //set the suggestion to null
+    }
     
+    //this method sets the suggestion to null without changing the question
+    public function declineSuggestion(Request $req){
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
+        $question->update(['suggestion' => null]); //set the suggestion to null
+    }
 }
