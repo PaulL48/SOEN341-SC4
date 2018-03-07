@@ -139,9 +139,12 @@ class AnswerQuestion extends Component {
                     </div>
                     {this.handleAcceptedLogo(currentItem)}
                 </div>  
-                <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}><div>
-                    <span className="AnswerTextAnswerer">Answered by {this.state.answerer} at SOMETIME</span>
-                </div></div></div>
+                    <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}>
+                        <div>
+                            <span className="AnswerTextAnswerer">Answered by SOMEONE {this.state.answerer} at SOMETIME</span>
+                        </div>
+                    </div>
+                </div>
                 );
             }
         );
@@ -182,7 +185,7 @@ class AnswerQuestion extends Component {
                     <span className="BlockBetween">The Question</span>
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                     <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
-                    <div style={{display:'flex',flexDirection:'column'}}>
+                    <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
                         <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
                         <span className="AnswerQuestionText">{this.props.history.location.state.question}</span>    
                     </div></div>

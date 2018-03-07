@@ -7,7 +7,7 @@
 .AnswerQuestionTitle{
     font-weight:bold;
     font-size:2rem;
-    color:black;
+    color:rgb(133, 19, 133);
     align-self:left;
     text-align:left;
     margin:1rem;
@@ -15,19 +15,20 @@
 .AnswerQuestionText{
     font-size:1rem;
     color:black;
-    align-self:left;
-    text-align:left;
+    align-self:right;
+    text-align:right;
     margin-left:2rem;
 }
 .AnswerQuestionAuthor{
     width:50vw;
-    display:flex;
+    display:inline-block;
+    text-align: right;
 }
 .BlockBetween{
     width:50vw;
     font-weight:bold;
     font-size:2.5rem;
-    color:black;
+    color:rgb(33, 81, 212);
     align-self:left;
     text-align:left;
     padding:1rem;
@@ -36,18 +37,19 @@
 }
 .AnswerNo{
     font-weight:bold;
-    font-size:2rem;
+    font-size:1rem;
     color:black;
-    align-self:left;
-    text-align:left;
-    margin:1rem;
+    width:35vw;
+    display:inline-block;
+    text-align: right;
 }
 .AnswerText{
     font-size:1rem;
     color:black;
     align-self:left;
     text-align:left;
-    margin-left:2rem;
+    margin-left:3rem;
+    
 }
 .AnswerPostAnswer{
     font-weight:bold;
@@ -62,4 +64,10 @@
 }
 .QuestionVotingBlock{       
     width: 8rem;
+}
+
+.AnswerTextAnswerer{
+    width:50vw;
+    display:inline-block;
+    text-align: right;
 }
