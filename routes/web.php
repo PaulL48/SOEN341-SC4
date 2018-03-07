@@ -24,6 +24,12 @@ Route::get('/questions', 'QuestionsRetrievalController@index');
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
 
+//Suggest a change to the Question
+Route::post('/suggest', array( 'before'=>'csrf','uses'=>'QuestionsController@suggestChange'));
+
+//Get an existing suggestion
+//Route::get('/getSuggestion')
+
 //Check if the current user is Logged in
 Route::get('/check','UserController@checkIfAuthenticated');
 Route::get('/checkUser','UserController@checkUser');

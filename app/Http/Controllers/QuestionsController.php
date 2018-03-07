@@ -34,6 +34,14 @@ class QuestionsController extends BaseController
             'result' => 'success'
         ]);
     }
+
+    function suggestChange(Request $req){
+        $question_id = $req->input('question_id');
+        $suggestion = $req->input('suggestion');
+        $question = DB::table('questions')->where('id', $question_id);
+
+        $question->update(['suggestion' => $suggestion]);
+    }
     /**
      * Get the top questions according to votes
      * GET /questions/top

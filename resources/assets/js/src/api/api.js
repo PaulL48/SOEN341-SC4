@@ -28,6 +28,26 @@ export const answerQuestion = (question_id,answer) =>{
     });
 };
 
+export const suggestQuestion = (question_id, suggestion) =>{
+    return Axios.request({
+        method:'post',
+        url:'/suggest',
+        data:{
+            question_id,
+            suggestion
+        }
+    });
+};
+
+export const getSuggestion = (question_id) =>{
+    return Axios.request({
+        url: '/getSuggestion',
+        params:{
+            question_id,
+        }
+    });
+};
+
 export const getAnswers = (question_id) =>{
     return  Axios.request({
         url: '/answers',

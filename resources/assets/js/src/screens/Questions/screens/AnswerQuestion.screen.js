@@ -5,7 +5,7 @@ import Quill from 'react-quill';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {Button} from 'antd';
 import './AnswerQuestion.scss';
-import {answerQuestion,getAnswers,setAcceptedAnswer,unsetAcceptedAnswer} from '../../../api';
+import {answerQuestion,getAnswers,setAcceptedAnswer,unsetAcceptedAnswer, suggestQuestion} from '../../../api';
 
 const mapStateToProps = state =>({
     isLoggedIn: state.auth.isLoggedIn,
@@ -23,6 +23,7 @@ class AnswerQuestion extends Component {
             answer:'',
             currentAnswers: [],
             hasAcceptedAnswer: false,
+            suggestion:'',
         };
         
     }
@@ -41,6 +42,12 @@ class AnswerQuestion extends Component {
     handleInputText(e,delta,source,content){
         this.setState({
             answer: content.getText()
+        });
+    }
+
+    handleSuggestionText(e,delta,soure,content){
+        this.setState({
+            suggestion: content.getText()
         });
     }
 
@@ -144,8 +151,35 @@ class AnswerQuestion extends Component {
             <span className="AnswerText">There are currently<br/> no answer for this question!</span>
         );
     }}  
-    
-   
+
+    showExistingSuggestion(){
+        //Add method to show the suggestion already linked to the question
+    }
+
+    showSuggestionBox(){
+                if(!this.state.hasAcceptedAnswer){
+            return (
+                <div className="quillSuggestionBox">
+                <Quill
+                theme="snow"
+                modules={this.modules}
+                formats={this.formats}
+                className="QuillSuggestion"
+                onChange={(e,delta,source,content)=>this.handleSuggestionText(e,delta,source,content)}
+                placeholder="Your suggestion here..."
+            />
+            <Button className="submitQuestion" type="primary" onClick={()=>this.handleSuggestion()}>Suggest Edit</Button>
+            </div>
+            )
+        }
+    }
+    handleSuggestion(){
+        if(this.props.history.location.state.author === this.props.currentUser.user.name){
+            alert('You can\'t suggest a change to your own question!');
+        }else{
+            suggestQuestion(this.props.history.location.state.id, this.state.suggestion);
+        }
+    }
 
 
     modules: {
@@ -175,6 +209,7 @@ class AnswerQuestion extends Component {
                 <div className="inner-wrapper">
                     <span className="AnswerText" style={{fontSize:20}}>question</span>
                     <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
+                    {this.showSuggestionBox()}
                     {this.handleDisplayAnswers()}
                     <span className="AnswerText">Your answer</span>
                     <Quill
@@ -186,7 +221,7 @@ class AnswerQuestion extends Component {
                     placeholder="Your answer here..."
                     />
                     <Button className="submitQuestion" type="primary" onClick={()=>this.handleSubmit()}>Post your answer</Button>
-                    </div>
+                </div>
                 </div>
             </div>
         );
