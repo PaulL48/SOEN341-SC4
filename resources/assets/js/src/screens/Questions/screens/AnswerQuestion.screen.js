@@ -33,7 +33,7 @@ class AnswerQuestion extends Component {
     componentDidMount(){
         console.log(this.props);
         getAnswers(this.props.history.location.state.id).then((res)=>{
-            this.setState({answerer: res.data.data.user.name,currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
+            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
             console.log(res);
         }).catch((err)=>{
             console.log(err);
