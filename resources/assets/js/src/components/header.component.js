@@ -30,8 +30,8 @@ class HeaderComponent extends PureComponent{
         if(this.props.isLoggedIn){
             return(
                 [
-                    <li key="1"><a>Profile</a></li>,
-                    <li key="2"><a onClick={()=>this.handleSignout()}>Log out</a></li>
+                    <li key="1"><Link to="/question/ask" style={{fontSize:18}}>Ask a question</Link></li>,
+                    <li key="2"><a style={{fontSize:18}} onClick={()=>this.handleSignout()}>Log out</a></li>
                 ]
                
             );
@@ -67,7 +67,7 @@ class HeaderComponent extends PureComponent{
                             &nbsp;
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            {this.handleAuth()}            
+                            {this.handleAuth()} 
                         </ul>
                     </div>
                 </div>
