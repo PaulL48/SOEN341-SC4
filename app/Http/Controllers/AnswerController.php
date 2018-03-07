@@ -58,14 +58,15 @@ class AnswerController extends Controller
     public function setAcceptedAnswer(Request $req){
         $answer_id = $req->input('id');
 
-        $answer = DB::table('answers')->where('id', $req->input('id'));
-        $answer->update(['accepted' => 1]);
+       DB::table('answers')->where('id', $answer_id)->update(['accepted' => 1]);
+        
+       
     }
 
     public function unsetAcceptedAnswer(Request $req){
         $answer_id = $req->input('id');
 
-        $answer = DB::table('answers')->where('id', $req->input('id'));
-        $answer->update(['accepted' => 0]);
+        DB::table('answers')->where('id', $answer_id)->update(['accepted' => 0]);
+        
     }
 }
