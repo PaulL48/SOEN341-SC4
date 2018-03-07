@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch =>({
     signOutActionDispatch : () => dispatch(signOutAction()),
 });
 
-class HeaderComponent extends PureComponent{
+export class HeaderComponent extends PureComponent{
 
     constructor(){
         super();
