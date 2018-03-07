@@ -50,7 +50,7 @@ class HeaderComponent extends PureComponent{
             <div id="app">
             <nav className="navbar navbar-default navbar-static-top">
                 <div className="container">
-                    <div className="navbar-header">
+                    <div className="navbar-header" style={{backgroundColor:'royalblue'}}>
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                             <span className="sr-only">Toggle Navigation</span>
                             <span className="icon-bar"></span>
