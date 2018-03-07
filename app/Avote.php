@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Events\VoteEvent;
 /**
- * Class Vote
+ * Class Avote
  *
  * @package App
  */
-class Vote extends Model
+class Avote extends Model
 {
 /*     protected $events = [
         'created' => VoteEvent::class,
@@ -18,15 +18,15 @@ class Vote extends Model
     ]; */
     protected $fillable = [
         'user_id',
-        'question_id',
+        'answer_id',
         'upVote',
         'downVote'
     ];
     public function user() {
         return $this->belongsTo('App\User');
     }
-    public function question() {
-        return $this->belongsTo('App\Question');
+    public function answer() {
+        return $this->belongsTo('App\Answer');
     }
     /**
      * Insert/Update & Delete from votes table
@@ -38,12 +38,12 @@ class Vote extends Model
      * @return array
      */
     public static function vote($user_id, $id, $vote, $column) {
-        $voted = Vote::where('user_id', $user_id)->where($column, $id)->first();
+        $voted = Avote::where('user_id', $user_id)->where($column, $id)->first();
         if (isset($voted->vote) && $voted->vote == $vote)  {
-            Vote::destroy($voted->id);
+            Avote::destroy($voted->id);
             $ajax_response = array('status' => 'success','msg' => "Vote nullified on $column $id");
         } else {
-            Vote::updateOrCreate([$column => $id,'user_id' => $user_id],['vote' => $vote]);
+            Avote::updateOrCreate([$column => $id,'user_id' => $user_id],['vote' => $vote]);
             $ajax_response = array('status' => 'success','msg' => "Vote cast on $column $id");
         }
         return $ajax_response;

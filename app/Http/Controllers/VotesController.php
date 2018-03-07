@@ -6,48 +6,58 @@ use Illuminate\Support\Facades\Response;
 use resources\assets\js\src\components\ListQuestions;
 
 use DB;
+use App\Vote;
+use App\Avote;
+use App\User;
+use App\Question;
+use Carbon\Carbon;
+
 class VotesController extends Controller
 {
     public function vote_question(Request $req)
     {
         $question = DB::table('questions')->where('id', $req->input('id'));
         $voteCount = $question->value('vote');
-        $questionID = $question->value('id');
+        $questionId = $question->value('id');
+        $userId = $req->user()->id;
 
-        
-        $vote = array('user_id' => Auth::id(), 
-                      'question_id' => $questionID,
-                      'voted' => true,
-                      'created_at' => Carbon::now());
-    
-        
-        $voteQId = DB::table('votes')->where('question_id', $questionID)->get();
-        $voteDB = DB::table('votes')->where('user_id', Auth::id())->union($voteQId)->get();
-        $voted = $voteDB->value('voted');
+        $vote = Vote::where('user_id', $userId)->where('question_id', $questionId)->first();
         
         if($user = Auth::user()){
-            if($req->input('vote')=='upVote'){
-                $question->update(['vote' => $voteCount+1]);
-                $rowsAffected = DB::table('votes')->insert($vote);
-                if($rowsAffected == 1)
-                {
-                    return response()->json(['data' => 'Vote created.'], 200);
+            if(!$vote){
+                if($req->input('vote')=='upVote'){
+                    $question->update(['vote' => $voteCount+1]);
+                    $data = array('user_id' => $userId, 'question_id' => $questionId, 'upVote' => true, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'));
                 }
-                else
-                {
-                    return response()->json(['data' => 'Failed to create vote.'], 400);
+                elseif($req->input('vote')=='downVote'){
+                    $question->update(['vote' => $voteCount-1]);
+                    $data = array('user_id' => $userId, 'question_id' => $questionId, 'downVote' => true, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'));
                 }
-            }
-            elseif($req->input('vote')=='downVote'){
-                $question->update(['vote' => $voteCount-1]);
-                $rowsAffected = DB::table('votes')->insert($vote);
-                if($rowsAffected == 1)
-                {
-                    return response()->json(['data' => 'Vote created.'], 200);
+                DB::table('votes')->insert($data);
+            } else {
+                $upVote = $vote->upVote;
+                $downVote = $vote->downVote;
+                if($upVote == true && $downVote == true){
+                    $vote->update(['upVote' => false, 'downVote' => false]);
+                    if($req->input('vote')=='upVote'){
+                        $question->update(['vote' => $voteCount+1]);
+                        $vote->update(['upVote' => true]);
+                    } elseif($req->input('vote')=='downVote'){
+                        $question->update(['vote' => $voteCount-1]);
+                        $vote->update(['downVote' => true]);
+                    }
                 }
-                else
-                {
-                    return response()->json(['data' => 'Failed to create vote.'], 400);
+                if($upVote == false){
+                    if($req->input('vote')=='upVote'){
+                        $question->update(['vote' => $voteCount+1]);
+                        $vote->update(['upVote' => true]);
+                    }
+                } 
+                if($downVote == false){
+                    if($req->input('vote')=='downVote'){
+                        $question->update(['vote' => $voteCount-1]);
+                        $vote->update(['downVote' => true]);
+                    }
                 }
             }
         }
@@ -58,14 +68,50 @@ class VotesController extends Controller
     }
     public function vote_answer(Request $req)
     {
-        $question = DB::table('answers')->where('id', $req->input('id'));
-        $voteCount = $question->value('votes');
+        $answer = DB::table('answers')->where('id', $req->input('id'));
+        $voteCount = $answer->value('votes');
+        $answerId = $answer->value('id');
+        $userId = $req->user()->id;
 
-        if($req->input('vote')=='upVote'){
-            $question->update(['votes' => $voteCount+1]);
-        }
-        elseif($req->input('vote')=='downVote'){
-            $question->update(['votes' => $voteCount-1]);
+        $vote = Avote::where('user_id', $userId)->where('answer_id', $answerId)->first();
+
+        if($user = Auth::user()){
+            if(!$vote){
+                if($req->input('vote')=='upVote'){
+                    $answer->update(['votes' => $voteCount+1]);
+                    $data = array('user_id' => $userId, 'answer_id' => $answerId, 'upVote' => true, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'));
+                }
+                elseif($req->input('vote')=='downVote'){
+                    $answer->update(['votes' => $voteCount-1]);
+                    $data = array('user_id' => $userId, 'answer_id' => $answerId, 'downVote' => true, 'created_at' => Carbon::now()->format('Y-m-d H:i:s'));
+                }
+                DB::table('avotes')->insert($data);
+            } else {
+                $upVote = $vote->upVote;
+                $downVote = $vote->downVote;
+                if($upVote == true && $downVote == true){
+                    $vote->update(['upVote' => false, 'downVote' => false]);
+                    if($req->input('vote')=='upVote'){
+                        $answer->update(['votes' => $voteCount+1]);
+                        $vote->update(['upVote' => true]);
+                    } elseif($req->input('vote')=='downVote'){
+                        $answer->update(['votes' => $voteCount-1]);
+                        $vote->update(['downVote' => true]);
+                    }
+                }
+                if($upVote == false){
+                    if($req->input('vote')=='upVote'){
+                        $answer->update(['votes' => $voteCount+1]);
+                        $vote->update(['upVote' => true]);
+                    }
+                } 
+                if($downVote == false){
+                    if($req->input('vote')=='downVote'){
+                        $answer->update(['votes' => $voteCount-1]);
+                        $vote->update(['downVote' => true]);
+                    }
+                }
+            }
         }
     }
 
@@ -90,27 +136,6 @@ class VotesController extends Controller
         return response()->json([
             'count' =>  $vote
         ]);
-    }
-
-    /**
-     * Store a new vote submitted by a user
-     */
-    public function store(Request $req, $questionID)
-    {
-        $vote = array('user_id' => Auth::id(), 
-                      'question_id' => $questionID, 
-                      'answer_id' => 0, 
-                      'voted' => true,
-                      'created_at' => Carbon::now());
-        $rowsAffected = DB::table('votes')->insert($vote);
-        if($rowsAffected == 1)
-        {
-            return response()->json(['data' => 'Vote created.'], 200);
-        }
-        else
-        {
-            return response()->json(['data' => 'Failed to create vote.'], 400);
-        }
     }
 
 }
