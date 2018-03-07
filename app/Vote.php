@@ -18,15 +18,15 @@ class Vote extends Model
     ]; */
     protected $fillable = [
         'user_id',
-        'answer_id',
         'question_id',
-        'vote'
+        'upVote',
+        'downVote'
     ];
     public function user() {
         return $this->belongsTo('App\User');
     }
-    public function answer() {
-        return $this->belongsTo('App\Answer');
+    public function question() {
+        return $this->belongsTo('App\Question');
     }
     /**
      * Insert/Update & Delete from votes table
