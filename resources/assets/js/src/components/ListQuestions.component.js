@@ -22,10 +22,10 @@ export class ListC extends Component {
                             <Voting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
                              <Link  to={{ 
                                 pathname: '/question/answer', 
-                                state: {title: currentItem.title ,id:currentItem.id,question: currentItem.question,author: currentItem.author } 
+                                state: {title: currentItem.title ,id:currentItem.id,question: currentItem.question,author: currentItem.author,time:currentItem.created_at } 
                             }} className="QTitle" style={{textAlign:'left',width:300}}>{currentItem.title}</Link>
                         </div>
-                        <span className="QAuthor">Created by {currentItem.author} at {currentItem.created_at}</span>        
+                        <span className="QAuthor">Asked by {currentItem.author} at {currentItem.created_at}</span>        
                     </div>
                 );
            })}

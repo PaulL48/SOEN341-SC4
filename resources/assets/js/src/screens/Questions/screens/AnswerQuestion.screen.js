@@ -20,6 +20,8 @@ class AnswerQuestion extends Component {
     constructor(){
         super();
         this.state = {
+            answerer: '',
+            answerTime: '',
             answer:'',
             currentAnswers: [],
             hasAcceptedAnswer: false,
@@ -31,7 +33,7 @@ class AnswerQuestion extends Component {
     componentDidMount(){
         console.log(this.props);
         getAnswers(this.props.history.location.state.id).then((res)=>{
-            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer:res.data.hasAccepted});
+            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
             console.log(res);
         }).catch((err)=>{
             console.log(err);
@@ -128,20 +130,24 @@ class AnswerQuestion extends Component {
         if(this.state.currentAnswers.length !== 0){
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div key={index} style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
+                <div>
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
+                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
-                        <span className="AnswerText" style={{fontSize:30,margin:30}}>Answer #{index+1}</span>
+                        <span className="AnswerNo">Answer #{index+1}</span>
                         <span className="AnswerText">{currentItem.answer}</span>
                     </div>
                     {this.handleAcceptedLogo(currentItem)}
-                </div>
+                </div>  
+                <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}><div>
+                    <span className="AnswerTextAnswerer">Answered by {this.state.answerer} at SOMETIME</span>
+                </div></div></div>
                 );
             }
         );
     }else{
         return(
-            <span className="AnswerText">There are currently<br/> no answer for this question!</span>
+            <span className="AnswerNoText">There are currently<br/> no answer for this question!</span>
         );
     }}  
     
@@ -173,11 +179,18 @@ class AnswerQuestion extends Component {
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
-                    <span className="questionVoting"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
-                    <span className="AnswerText" style={{fontSize:20}}>{this.props.history.location.state.title}</span>
-                    <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.history.location.state.question}</span>
+                    <span className="BlockBetween">The Question</span>
+                    <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
+                    <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
+                    <div style={{display:'flex',flexDirection:'column'}}>
+                        <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
+                        <span className="AnswerQuestionText">{this.props.history.location.state.question}</span>    
+                    </div></div>
+                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.history.location.state.time}</span>
+                    
+                    <span className="BlockBetween">The Answers</span>
                     {this.handleDisplayAnswers()}
-                    <span className="AnswerText">Your answer</span>
+                    <span className="AnswerPostAnswer">Post an answer!</span>
                     <Quill
                     theme="snow"
                     modules={this.modules}
