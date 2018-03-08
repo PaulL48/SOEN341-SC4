@@ -3,6 +3,12 @@ language: php
 php:
   - 7.2.1
 
+services:
+  - mysql
+
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS SOEN341SC4;'
+
 before_script:
   - cp .env.travis .env
   - composer self-update
@@ -10,4 +16,7 @@ before_script:
 
 script:
   - php artisan key:generate
+  - php artisan migrate
+  - php artisan db:seed
   - vendor/bin/phpunit
+
