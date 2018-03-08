@@ -56,8 +56,8 @@ class AnswerQuestion extends Component {
             answerQuestion(this.props.history.location.state.id,this.state.answer);
             setTimeout(()=>{ // fake asyncronous method
                 getAnswers(this.props.history.location.state.id).then((res)=>{
-                    this.setState({currentAnswers: res.data.data});
-                    console.log(res);
+                    this.setState({answerer: res.data.data,currentAnswers: res.data.data});
+                    console.log(res );
                 }).catch((err)=>{
                     console.log(err);
                 });
@@ -141,7 +141,7 @@ class AnswerQuestion extends Component {
                 </div>  
                     <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}>
                         <div>
-                            <span className="AnswerTextAnswerer">Answered by SOMEONE {this.state.answerer} at SOMETIME</span>
+                            <span className="AnswerTextAnswerer">Answered by SOMEONE at SOMETIME</span>
                         </div>
                     </div>
                 </div>
@@ -178,7 +178,7 @@ class AnswerQuestion extends Component {
     
     render() {
         return (
-            <div style={{margin:20}}>
+            <div>
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
