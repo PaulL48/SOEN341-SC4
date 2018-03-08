@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 
-class App extends Component {
+export class App extends Component {
     constructor(){
         super();
         this.state={
@@ -57,8 +57,8 @@ class App extends Component {
         getQuestions().then((res)=>{
            this.setState({data:res.data});
            console.log(res);
-       }).catch((err)=>{
-            console.log(err);
+       }).catch(()=>{
+        
        });
     }
 
