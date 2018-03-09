@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 
-class AnswerQuestion extends Component {
+export class AnswerQuestion extends Component {
     constructor(){
         super();
         this.state = {
@@ -47,7 +47,7 @@ class AnswerQuestion extends Component {
         getSuggestion(this.props.history.location.state.id).then((res)=>{
             console.log(res);
             this.setState({
-                hasSuggestion : !(res.data.suggestion===""),
+                hasSuggestion : !(res.data.suggestion===null),
                 suggestion: res.data.suggestion
             });
            
@@ -214,8 +214,9 @@ class AnswerQuestion extends Component {
     handleAcceptedSuggestion(){
         acceptSuggestion(this.props.history.location.state.id);
         this.setState({hasSuggestion:false});
-        this.props.getQuestionActionDispatch(this.props.history.location.state.id);
-
+        setTimeout(()=>{
+            this.props.getQuestionActionDispatch(this.props.history.location.state.id);
+        },500);
     }
     handleDeclinedSuggestion(){
         declineSuggestion(this.props.history.location.state.id);

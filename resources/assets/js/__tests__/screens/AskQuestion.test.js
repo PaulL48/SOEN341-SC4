@@ -1,12 +1,11 @@
 import React from 'react';
-import {App} from '../../js/src/app';
+import {AskQuestion} from '../../src/screens/Questions/screens/AskQuestion.screen';
 import {shallow} from 'enzyme';
-
 import { expect } from 'chai';
 
 
-describe('App item', () => {
-      const wrapper = shallow(<App />);  
+describe('AskQuestion item', () => {
+      const wrapper = shallow(<AskQuestion />);  
       it('should be a div item', () => { 
              expect(wrapper.type()).to.eql('div');  });
 });
