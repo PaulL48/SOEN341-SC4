@@ -33,7 +33,7 @@ script:
   # Testing and code coverage
   - vendor/bin/phpunit --testsuite=Unit --coverage-text --coverage-clover "clover.xml"
 
-after_scripts:
+after_script:
   # Testing and code coverage
   - ./cc-test-reporter after-build --coverage-input-type clover --exit-code $TRAVIS_TEST_RESULT
 
