@@ -4,4 +4,3 @@ export * from './AnswerVoting.component';
 export * from './upvoteButton.component';
 export * from './downvoteButton.component';
 export * from './ListQuestions.component';
-export * from './AnswerAccept.component';
