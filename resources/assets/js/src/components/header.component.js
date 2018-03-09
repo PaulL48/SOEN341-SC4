@@ -11,7 +11,7 @@ const mapDispatchToProps = dispatch =>({
     signOutActionDispatch : () => dispatch(signOutAction()),
 });
 
-class HeaderComponent extends PureComponent{
+export class HeaderComponent extends PureComponent{
 
     constructor(){
         super();
@@ -51,7 +51,7 @@ class HeaderComponent extends PureComponent{
             <div id="app">
             <nav className="navbar navbar-default navbar-static-top" style={{marginBottom:10}}>
                 <div className="container">
-                    <div className="navbar-header" style={{backgroundColor:'royalblue'}}>
+                    <div className="navbar-header" style={{}}>
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                             <span className="sr-only">Toggle Navigation</span>
                             <span className="icon-bar"></span>
