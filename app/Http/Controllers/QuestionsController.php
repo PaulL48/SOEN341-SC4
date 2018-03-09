@@ -64,6 +64,9 @@ class QuestionsController extends BaseController
         return $questions;
     }
 
+    /**
+     * Return the body of the question with the supplied id
+     */
     public function retrieveQuestion(Request $req){
         $question = DB::table('questions')->where('id',$req->input('id'))->get();
         return response()->json([
