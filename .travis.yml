@@ -35,5 +35,6 @@ script:
 
 after_scripts:
   # Testing and code coverage
+  - echo "Testing after scripts execution"
   - ./cc-test-reporter after-build --coverage-input-type clover --exit-code $TRAVIS_TEST_RESULT
 
