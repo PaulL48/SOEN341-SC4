@@ -19,10 +19,22 @@ Route::get('/vote/question/count', array( 'before'=>'csfr','uses'=>'VotesControl
 Route::get('/vote/answer/count', array( 'before'=>'csfr','uses'=>'VotesController@getAnswerVoteCount' ) );
 
 //Get available questions
-Route::get('/questions', 'QuestionsRetrievalController@index');
+Route::get('/questions', 'QuestionsController@retrieve');
+Route::get('/question','QuestionsController@retrieveQuestion');
 
 //Accepting Answer
 Route::post('/acceptAnswer', array( 'before'=>'csrf','uses'=>'AcceptedAnswerController@acceptAnswer' ) );
+
+//Suggest a change to the Question
+Route::post('/insertSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@insertSuggestion'));
+
+//Get an existing suggestion
+Route::get('/retrieveSuggestion', 'QuestionsController@retrieveSuggestion');
+
+//Accept the change to the question
+Route::post('/acceptSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@acceptSuggestion'));
+//Decline the change to the question
+Route::post('/declineSuggestion', array( 'before'=>'csrf','uses'=>'QuestionsController@declineSuggestion'));
 
 //Check if the current user is Logged in
 Route::get('/check','UserController@checkIfAuthenticated');
@@ -38,7 +50,6 @@ Route::post('/answer','AnswerController@insert');
 Route::get('/answers','AnswerController@getAnswers');
 
 //Set/unset AcceptedAnswer
-
 Route::post('/vote/answer/accepted', 'AnswerController@setAcceptedAnswer');
 Route::post('/vote/answer/removeAccepted','AnswerController@unsetAcceptedAnswer');
 
