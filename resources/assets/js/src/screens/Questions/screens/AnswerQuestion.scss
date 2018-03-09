@@ -32,16 +32,18 @@
     align-self:left;
     text-align:left;
     padding:1rem;
+    margin-top: 3px;
     border-top: 3px solid #00d084;
     border-bottom: 3px solid #00d084;
 }
 .AnswerNo{
     font-weight:bold;
-    font-size:1rem;
-    color:black;
+    font-size:2rem;
+    color:#DB3A34;
     width:35vw;
     display:inline-block;
-    text-align: right;
+    text-align: left;
+    margin: 2px;
 }
 .AnswerText{
     font-size:1rem;
@@ -54,7 +56,7 @@
 .AnswerPostAnswer{
     font-weight:bold;
     font-size:2rem;
-    color:black;
+    color: #084C61;
     align-self:left;
     text-align:left;
     margin:1rem;
@@ -70,4 +72,16 @@
     width:50vw;
     display:inline-block;
     text-align: right;
+}
+.AnswerQuestionBlock{
+    border-bottom: 3px solid #00d084;
+    margin-top: 3px;
+}
+.AnswerQuestionSuggestion{
+    font-weight:bold;
+    font-size:2rem;
+    color: #084C61;
+    align-self:left;
+    text-align:left;
+    margin:1rem;
 }

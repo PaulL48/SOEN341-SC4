@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import imgSrc from './bestAnswer.png';
 
 
 export class AnswerAccept extends Component {

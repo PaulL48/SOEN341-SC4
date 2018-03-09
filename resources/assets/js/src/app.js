@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Header,ListC} from './components';
 import Axios from 'axios';
+import {getQuestions} from './api';
 import {signOutAction} from './screens';
 
 
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 
-class App extends Component {
+export class App extends Component {
     constructor(){
         super();
         this.state={
@@ -53,31 +54,32 @@ class App extends Component {
     }
 
     componentWillMount(){
-       Axios.get('/questions').then((res)=>{
+        getQuestions().then((res)=>{
            this.setState({data:res.data});
            console.log(res);
-       }).catch((err)=>{
-            console.log(err);
+       }).catch(()=>{
+        
        });
     }
 
     render() {
         return (
-            <div className="container" >
-                <Header/>
-                    <div className="flex-center position-ref full-height">
-                    <div className="content">
-                        <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
-                        <div>
-                            <div className="DisplayRecentQuestion">
-                                Here is the most recent Question
+            <div>
+                <div>
+                    <Header/>
+                </div>
+                <div className="container" >
+                        <div className="flex-center position-ref full-height">
+                        <div className="content">
+                            <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
+                            <div>
+                                <div className="DisplayRecentQuestion">
+                                    <span>Below are the Questions!</span>
+                                    <span></span>
+                                </div>
                             </div>
-                            
-                            <div className="DisplayRecentQuestion2">
-                                The Questions
-                            </div>
+                            <ListC data={this.state.data}/>
                         </div>
-                        <ListC data={this.state.data}/>
                     </div>
                 </div>
             </div>

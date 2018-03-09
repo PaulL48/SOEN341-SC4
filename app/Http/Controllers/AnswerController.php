@@ -24,8 +24,11 @@ class AnswerController extends Controller
         $user_id = Auth::id();
         $votes = 0;
         $accepted = 0;
+
+        $answerer = DB::table('users')->select('name')->where('id',$user_id)->first();
+        $answererValue = $answerer->name;
         
-        $data = array('question_id'=>$question_id, 'answer'=> $answer, 'user_id'=>$user_id, 'votes'=> $votes,'accepted'=>$accepted,'created_at' => Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'));
+        $data = array('question_id'=>$question_id, 'answer'=> $answer,'answerer'=>$answererValue, 'user_id'=>$user_id, 'votes'=> $votes,'accepted'=>$accepted,'created_at' => Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'));
         
         DB::table('answers')->insert($data);
 
@@ -41,10 +44,10 @@ class AnswerController extends Controller
 
         $answers = DB::table('answers')->where('question_id', '=', $question_id)->orderBy('votes','desc')->get();
 
+        
         foreach($answers as &$answer)
         {
-            $answer = DB::table('answers')->where('id', '=', $question_id)->value('accepted');
-            if($answer == 1)
+            if($answer->accepted == 1)
             {
                 $hasAcceptedAnswer = true;
             }
@@ -58,14 +61,12 @@ class AnswerController extends Controller
     public function setAcceptedAnswer(Request $req){
         $answer_id = $req->input('id');
 
-        $answer = DB::table('answers')->where('id', $req->input('id'));
-        $answer->update(['accepted' => 1]);
+        DB::table('answers')->where('id', $answer_id)->update(['accepted' => 1]);
     }
 
     public function unsetAcceptedAnswer(Request $req){
         $answer_id = $req->input('id');
 
-        $answer = DB::table('answers')->where('id', $req->input('id'));
-        $answer->update(['accepted' => 0]);
+        DB::table('answers')->where('id', $answer_id)->update(['accepted' => 0]);
     }
 }
