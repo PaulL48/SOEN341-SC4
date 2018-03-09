@@ -15,7 +15,7 @@ class UserTest extends TestCase
             'name' => 'Test Boi',
             'email' => 'boi@test.com',  
             'password' => bcrypt('password')
-        ]);
+        ])->toArray();
         $this->assertDatabaseHas('users',$user);
         return;
     }
