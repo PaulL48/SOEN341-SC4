@@ -34,6 +34,7 @@ class QuestionsController extends BaseController
             'result' => 'success'
         ]);
     }
+
     /**
      * Get the top questions according to votes
      * GET /questions/top
@@ -46,7 +47,11 @@ class QuestionsController extends BaseController
     public function retrieve() {
         // Retrieve question and author id
         $questions = DB::table('questions')->select('id','title', 'user_id as author', 'question', 'created_at', 'resolved')
+<<<<<<< HEAD
                                            ->orderBy('created_at', 'desc')
+=======
+                                           ->orderBy('created_at','desc')
+>>>>>>> master
                                            ->get();
 
         // Repopulate author id with author name
@@ -63,29 +68,48 @@ class QuestionsController extends BaseController
         return $questions;
     }
 
+    public function retrieveQuestion(Request $req){
+        $question = DB::table('questions')->where('id',$req->input('id'))->get();
+        return response()->json([
+            'question' => $question
+        ]);
+    }
+    
     public function insertSuggestion(Request $req){
 
         // Get question
-        $question = DB::table('questions')->where('id', $req->input('id'));
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
         $currentDBSuggestion = $question->value('suggestion');
 
         // Receive Question from Front-End
         $suggestion = $req->input('suggestion');
 
         // Update Suggestion in Database
-        if($currentDBSuggestion == null){
+        //if($currentDBSuggestion == null){
             $question->update(['suggestion' => $suggestion]);
-        }
-        else {
-            echo "A suggestion has already been placed";
-        }
+        //}
     }
 
-    public function retrieveSuggestion(){
-        $question = DB::table('questions')->where('id', $req->input('id'));
-        $currentDBSuggestion = $question->value('suggestion');
+    public function retrieveSuggestion(Request $req){
+        $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
 
-        return $currentDBSuggestion;
+        return response()->json([
+            'suggestion' => $suggestion
+        ]);
+    }
+
+    //this method changes the question to the suggestion and sets that field to null
+    public function acceptSuggestion(Request $req){
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
+        $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
+
+        $question->update(['question' => $suggestion]); //set the question to the suggestion
+        $question->update(['suggestion' => null]); //set the suggestion to null
     }
     
+    //this method sets the suggestion to null without changing the question
+    public function declineSuggestion(Request $req){
+        $question = DB::table('questions')->where('id', $req->input('question_id'));
+        $question->update(['suggestion' => null]); //set the suggestion to null
+    }
 }

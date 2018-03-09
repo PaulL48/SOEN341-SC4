@@ -28,6 +28,59 @@ export const answerQuestion = (question_id,answer) =>{
     });
 };
 
+export const getQuestions = () =>{
+    return Axios.get('/questions');
+}
+
+export const getQuestion = (id) =>{
+    return Axios.request({
+        url:'/question',
+        params: {
+            id
+        }
+    })
+}
+
+export const suggestQuestion = (question_id, suggestion) =>{
+    return Axios.request({
+        method:'post',
+        url:'/insertSuggestion',
+        data:{
+            question_id,
+            suggestion
+        }
+    });
+};
+
+export const acceptSuggestion = (question_id) =>{
+    return Axios.request({
+        method:'post',
+        url:'/acceptSuggestion',
+        data:{
+            question_id
+        }
+    });
+};
+
+export const declineSuggestion = (question_id) =>{
+    return Axios.request({
+        method:'post',
+        url:'/declineSuggestion',
+        data:{
+            question_id
+        }
+    });
+};
+
+export const getSuggestion = (question_id) =>{
+    return Axios.request({
+        url: '/retrieveSuggestion',
+        params:{
+            question_id,
+        }
+    });
+};
+
 export const getAnswers = (question_id) =>{
     return  Axios.request({
         url: '/answers',

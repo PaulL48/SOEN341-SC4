@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {Header,ListC} from './components';
 import Axios from 'axios';
+import {getQuestions} from './api'
 import {signOutAction} from './screens';
 
 
@@ -15,7 +16,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 
-class App extends Component {
+export class App extends Component {
     constructor(){
         super();
         this.state={
@@ -53,11 +54,11 @@ class App extends Component {
     }
 
     componentWillMount(){
-       Axios.get('/questions').then((res)=>{
+        getQuestions().then((res)=>{
            this.setState({data:res.data});
            console.log(res);
-       }).catch((err)=>{
-            console.log(err);
+       }).catch(()=>{
+        
        });
     }
 
