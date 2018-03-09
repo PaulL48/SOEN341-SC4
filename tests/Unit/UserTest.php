@@ -16,7 +16,7 @@ class UserTest extends TestCase
             'email' => 'boi@test.com',  
             'password' => bcrypt('password')
         ]);
-        $this->assertDatabase('users',$user);
+        $this->assertDatabaseHas('users',$user);
         return;
     }
 
@@ -37,9 +37,12 @@ class UserTest extends TestCase
         ];
 
         // Test to see if duplicated (deemed duplicated if email is duplicated)
-        try {
+        try 
+        {
             factory(\App\User::class)->create($newUser);
-        } catch(Exception $e) {
+        } 
+        catch(Exception $e) 
+        {
             $this->assertTrue(true);
             return;
         }
