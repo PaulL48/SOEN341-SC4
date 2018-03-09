@@ -1,22 +1,24 @@
 .QuillAnswer{
     
 }
+
 .inner-wrapper{
     width:50vw;
 }
 .AnswerQuestionTitle{
     font-weight:bold;
-    font-size:2rem;
+    font-size:2.5rem;
     color:rgb(133, 19, 133);
-    align-self:left;
-    text-align:left;
+    align-self:center;
+    text-align:center;
     margin:1rem;
 }
 .AnswerQuestionText{
-    font-size:1rem;
+    font-size:1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
     color:black;
-    align-self:right;
-    text-align:right;
+    align-self:left;
+    text-align:left;
     margin-left:2rem;
 }
 .AnswerQuestionAuthor{
@@ -32,8 +34,7 @@
     align-self:left;
     text-align:left;
     padding:1rem;
-    margin-top: 3px;
-    border-top: 3px solid #00d084;
+    
     border-bottom: 3px solid #00d084;
 }
 .AnswerNo{

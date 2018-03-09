@@ -179,6 +179,7 @@ class AnswerQuestion extends Component {
         if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer && !(this.props.history.location.state.author === this.props.currentUser.user.name)){
             return (
                 <div className="quillSuggestionBox">
+                <div className="AnswerQuestionSuggestion">Suggest an edit for the Question!</div>
                 <Quill
                 theme="snow"
                 modules={this.modules}
@@ -221,7 +222,6 @@ class AnswerQuestion extends Component {
         this.setState({hasSuggestion:false});
     }
 
-
     handleSuggestion(){
         if(this.props.history.location.state.author === this.props.currentUser.user.name){
             alert('You can\'t suggest a change to your own question!');
@@ -262,12 +262,11 @@ class AnswerQuestion extends Component {
                         <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
                         <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
-                        <span className="AnswerQuestionText">{this.props.history.location.state.question}</span>    
+                        <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>
                     </div></div>
                     <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.history.location.state.time}</span>
                     <div className="AnswerQuestionBlock"></div>
 
-                    <div className="AnswerQuestionSuggestion">Suggest an edit for the Question!</div>
                     {this.showSuggestionBox()}
 
                     <span className="BlockBetween">The Answers</span>
