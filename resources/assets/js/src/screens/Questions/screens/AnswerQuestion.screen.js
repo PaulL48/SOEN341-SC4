@@ -56,7 +56,7 @@ class AnswerQuestion extends Component {
             answerQuestion(this.props.history.location.state.id,this.state.answer);
             setTimeout(()=>{ // fake asyncronous method
                 getAnswers(this.props.history.location.state.id).then((res)=>{
-                    this.setState({answerer: res.data.data,currentAnswers: res.data.data});
+                    this.setState({answerer: res.data.data.user_id,currentAnswers: res.data.data});
                     console.log(res );
                 }).catch((err)=>{
                     console.log(err);
@@ -128,9 +128,10 @@ class AnswerQuestion extends Component {
 
     handleDisplayAnswers(){
         if(this.state.currentAnswers.length !== 0){
+            console.log(this.state.currentAnswers);
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div>
+                <div key={index}>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                     <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
@@ -141,7 +142,7 @@ class AnswerQuestion extends Component {
                 </div>  
                     <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}>
                         <div>
-                            <span className="AnswerTextAnswerer">Answered by SOMEONE at SOMETIME</span>
+                            <span className="AnswerTextAnswerer">Answered by {currentItem.answerer} at {currentItem.created_at}</span>
                         </div>
                     </div>
                 </div>

@@ -46,7 +46,7 @@ class QuestionsController extends BaseController
     public function retrieve() {
         // Retrieve question and author id
         $questions = DB::table('questions')->select('id','title', 'user_id as author', 'question', 'created_at', 'resolved')
-                                           ->orderBy('vote', 'desc')
+                                           ->orderBy('created_at', 'desc')
                                            ->get();
 
         // Repopulate author id with author name
