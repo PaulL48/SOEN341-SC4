@@ -37,7 +37,6 @@ html, body {
 }
 
 .content {
-    padding-top: 40px;
     text-align: left;
 }
 
@@ -161,4 +160,16 @@ html, body {
     color: #4ACA5D;
     font-size: 80px;
     margin:200px;
+}
+.DisplayRecentQuestion{
+    border-top: 2px solid cadetblue;
+    border-bottom: 2px solid cadetblue;
+    font-weight: bold;
+    font-size: 30px;
+}
+.DisplayRecentQuestion2{
+    border-top: 2px solid purple;
+    border-bottom: 2px solid purple;
+    font-weight: bold;
+    font-size: 30px;
 }
