@@ -47,7 +47,7 @@ export class AnswerQuestion extends Component {
         getSuggestion(this.props.history.location.state.id).then((res)=>{
             console.log(res);
             this.setState({
-                hasSuggestion : !(res.data.suggestion===null),
+                hasSuggestion : !(res.data.suggestion===""),
                 suggestion: res.data.suggestion
             });
            
