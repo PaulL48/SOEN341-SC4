@@ -1,3 +1,7 @@
+env:
+  global:
+    - CC_TEST_REPORTER_ID=bef4813a0c7431f6389f12651bbab50c345c22ff03e737afdfcad090a27b9c85
+
 language: php
 
 php:
@@ -14,9 +18,22 @@ before_script:
   - composer self-update
   - composer install --no-interaction
 
+  # Code Climate testing requirements
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter 
+  - chmod +x ./cc-test-reporter 
+  - ./cc-test-reporter before-build
+
 script:
   - php artisan key:generate
+
+  # Assure databases are setup and seeded
   - php artisan migrate
   - php artisan db:seed
-  - vendor/bin/phpunit
+
+  # Testing and code coverage
+  - vendor/bin/phpunit --testsuite=Unit --coverage-text --coverage-clover "clover.xml"
+
+after_scripts:
+  # Testing and code coverage
+  - ./cc-test-reporter after-build --coverage-input-type clover --exit-code $TRAVIS_TEST_RESULT
 
