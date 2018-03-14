@@ -78,7 +78,8 @@ export class App extends Component {
                                     <span></span>
                                 </div>
                             </div>
-                            <ListC data={this.state.data}/>
+                            <ListC data={this.state.data} />
+                            <div style={{marginBottom:"2rem"}}></div>
                         </div>
                     </div>
                 </div>

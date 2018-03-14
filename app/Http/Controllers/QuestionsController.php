@@ -79,13 +79,16 @@ class QuestionsController extends BaseController
         // Get question
         $question = DB::table('questions')->where('id', $req->input('question_id'));
         $currentDBSuggestion = $question->value('suggestion');
-
+        
         // Receive Question from Front-End
         $suggestion = $req->input('suggestion');
+        $suggested_by = $req->input('suggested_by');
+
 
         // Update Suggestion in Database
         //if($currentDBSuggestion == null){
             $question->update(['suggestion' => $suggestion]);
+            $question->update(['suggested_by' => $suggested_by]);
         //}
     }
 

@@ -29,6 +29,7 @@ export class AnswerQuestion extends Component {
             hasAcceptedAnswer: false,
             hasSuggestion: false,
             suggestion:'',
+            suggested_by:'',
         };
         
     }
@@ -48,7 +49,8 @@ export class AnswerQuestion extends Component {
             console.log(res);
             this.setState({
                 hasSuggestion : !(res.data.suggestion===""),
-                suggestion: res.data.suggestion
+                suggestion: res.data.suggestion,
+                suggested_by: res.data.suggested_by
             });
            
         });
@@ -63,7 +65,7 @@ export class AnswerQuestion extends Component {
 
     handleSuggestionText(e,delta,soure,content){
         this.setState({
-            suggestion: content.getText()
+            suggestion: content.getText(),
         });
     }
 
@@ -195,7 +197,8 @@ export class AnswerQuestion extends Component {
         else if(this.state.hasSuggestion){
             return (
             <div>
-            <span className="AnswerText">Suggestion: {this.state.suggestion} </span>
+            <div className="Suggestion">Suggestion: {this.state.suggestion} </div>
+            <div className="SuggestionAuthor">Suggested by {this.props.currentQuestion.suggested_by}</div>
             {this.props.history.location.state.author === this.props.currentUser.user.name &&
                 <div>
                 <Button className="acceptSuggestion" type="primary" 
@@ -227,8 +230,8 @@ export class AnswerQuestion extends Component {
         if(this.props.history.location.state.author === this.props.currentUser.user.name){
             alert('You can\'t suggest a change to your own question!');
         }else{
-            suggestQuestion(this.props.history.location.state.id, this.state.suggestion);
-            this.setState({hasSuggestion:true, suggestion:this.state.suggestion});
+            suggestQuestion(this.props.history.location.state.id, this.state.suggestion, this.props.currentUser.user.name);
+            this.setState({suggested_by: this.props.currentUser.user.name ,hasSuggestion:true, suggestion:this.state.suggestion});
            
         }
     }
@@ -262,10 +265,10 @@ export class AnswerQuestion extends Component {
                     <div className="AnswerQuestion" style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                         <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
-                        <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
+                        <span className="AnswerQuestionTitle">{this.props.currentQuestion.title}</span>
                         <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>
                     </div></div>
-                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.history.location.state.time}</span>
+                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.currentQuestion.created_at}</span>
                     <div className="AnswerQuestionBlock"></div>
 
                     {this.showSuggestionBox()}

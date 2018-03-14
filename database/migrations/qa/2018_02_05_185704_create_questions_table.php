@@ -22,6 +22,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('vote')->default(0);
             $table->boolean('resolved')->default(0);
             $table->string('suggestion');
+            $table->string('suggested_by');
             $table->timestamps();
         });
     }
