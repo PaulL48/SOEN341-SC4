@@ -71,12 +71,10 @@ export class App extends Component {
                         <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
                         <div>
                             <div className="DisplayRecentQuestion">
-                                Here is the most recent Question
+                                Here are the most recent Questions
                             </div>
                             
-                            <div className="DisplayRecentQuestion2">
-                                The Questions
-                            </div>
+
                         </div>
                         <ListC data={this.state.data}/>
                     </div>
