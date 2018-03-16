@@ -66,6 +66,7 @@ export class AnswerQuestion extends Component {
     handleSuggestionText(e,delta,soure,content){
         this.setState({
             suggestion: content.getText(),
+            suggested_by: this.props.currentUser.user.name
         });
     }
 
@@ -216,14 +217,14 @@ export class AnswerQuestion extends Component {
 
     handleAcceptedSuggestion(){
         acceptSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
+        this.setState({hasSuggestion:false, suggested_by:''});
         setTimeout(()=>{
             this.props.getQuestionActionDispatch(this.props.history.location.state.id);
         },500);
     }
     handleDeclinedSuggestion(){
         declineSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
+        this.setState({hasSuggestion:false, suggested_by:''});
     }
 
     handleSuggestion(){

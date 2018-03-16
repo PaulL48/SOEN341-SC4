@@ -53,22 +53,24 @@ export const suggestQuestion = (question_id, suggestion, suggested_by) =>{
     });
 };
 
-export const acceptSuggestion = (question_id) =>{
+export const acceptSuggestion = (question_id, suggested_by) =>{
     return Axios.request({
         method:'post',
         url:'/acceptSuggestion',
         data:{
-            question_id
+            question_id,
+            suggested_by
         }
     });
 };
 
-export const declineSuggestion = (question_id) =>{
+export const declineSuggestion = (question_id, suggested_by) =>{
     return Axios.request({
         method:'post',
         url:'/declineSuggestion',
         data:{
-            question_id
+            question_id,
+            suggested_by
         }
     });
 };

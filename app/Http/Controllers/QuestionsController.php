@@ -104,14 +104,19 @@ class QuestionsController extends BaseController
     public function acceptSuggestion(Request $req){
         $question = DB::table('questions')->where('id', $req->input('question_id'));
         $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
+        $suggested_by = $req->input('suggested_by');
 
         $question->update(['question' => $suggestion]); //set the question to the suggestion
         $question->update(['suggestion' => null]); //set the suggestion to null
+        $question->update(['suggested_by' => '']);
     }
     
     //this method sets the suggestion to null without changing the question
     public function declineSuggestion(Request $req){
         $question = DB::table('questions')->where('id', $req->input('question_id'));
         $question->update(['suggestion' => null]); //set the suggestion to null
+
+        $suggested_by = $req->input('suggested_by');
+        $question->update(['suggested_by' => '']);
     }
 }
