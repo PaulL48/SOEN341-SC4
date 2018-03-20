@@ -35,6 +35,9 @@ class QuestionsController extends BaseController{
     /**
      * Get the top questions according to votes
      * GET /questions/top
+     * 
+     * Consider for removal
+     * 
      * @return Redirect
      */
     public function top(){

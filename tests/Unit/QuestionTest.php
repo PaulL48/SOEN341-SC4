@@ -5,27 +5,38 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use App\Question;
+use Illuminate\Foundation\Testing\Concerns\ImpersonatesUsers;
+use Illuminate\Support\Facades\Auth;
+use DB;
 
 class QuestionTest extends TestCase{   
-    // Isolates manipulations to the database
+    // Isolate manipulations to the database
     use RefreshDatabase;
 
     public function testQuestionAdd(){
-        // This uses the seeded data
+        // Create a mock user
+        $user = factory(User::class)->create();
+
         $question = ['title' => 'Hello World?',
-                     'question' => 'World Hello?',
-                     'user_id' => '1',
-                     'suggestion' => 'Maybe it should be Wello Horld'];
+                     'question' => 'World Hello?'];
+
+        // Authenticate as the mock user
+        $this->actingAs($user);
 
         $this->post('/ask', $question)
-             ->seeJson(['result' => 'success']);
+             ->assertJson(['result' => 'success']);
     }
 
-    public function testGetTopVotedQuestion(){
-        $this->assertTrue(false);
+    public function testQuestionAddMalformed(){
+        $question = ['question' => 'Test'];
+        $this->post('/ask', $question)
+             ->assertJson(['result' => 'failed']);
     }
 
     public function testGetAllQuestions(){
+        
         $this->assertTrue(false);
     }
 
