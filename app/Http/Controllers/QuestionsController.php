@@ -14,13 +14,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-class QuestionsController extends BaseController
-{
+class QuestionsController extends BaseController{
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
     function insert(Request $req){
-
-        
         $title = $req->input('title');
         $question = $req->input('question');
         $user_id = Auth::id();
@@ -38,24 +35,25 @@ class QuestionsController extends BaseController
     /**
      * Get the top questions according to votes
      * GET /questions/top
+     * 
+     * Consider for removal
+     * 
      * @return Redirect
      */
-    public function top() {
+    public function top(){
         return view('questions.top', ['questions' => Question::top(), 'page_title' => 'Top Questions', 'sort' =>'top']);
     }
 
-    public function retrieve() {
+    public function retrieve(){
         // Retrieve question and author id
         $questions = DB::table('questions')->select('id','title', 'user_id as author', 'question', 'created_at', 'resolved')
                                            ->orderBy('created_at','desc')
                                            ->get();
 
         // Repopulate author id with author name
-        foreach($questions as &$question)
-        {
+        foreach($questions as &$question){
             $question->author = DB::table('users')->where('id', '=', $question->author)->value('name');
-            if( !isset($question->author) )
-            {
+            if( !isset($question->author) ){
                 $question->author = 'Non-Existent User';
             }
         }
@@ -87,8 +85,8 @@ class QuestionsController extends BaseController
 
         // Update Suggestion in Database
         //if($currentDBSuggestion == null){
-            $question->update(['suggestion' => $suggestion]);
-            $question->update(['suggested_by' => $suggested_by]);
+        $question->update(['suggestion' => $suggestion]);
+        $question->update(['suggested_by' => $suggested_by]);
         //}
     }
 
