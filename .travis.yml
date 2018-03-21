@@ -28,6 +28,7 @@ script:
 
   # Assure databases are setup and seeded
   - php artisan migrate
+  - php artisan migrate --path=/database/migrations/qa
   - php artisan db:seed
 
   # Testing and code coverage
