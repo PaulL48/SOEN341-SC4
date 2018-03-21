@@ -18,9 +18,11 @@ before_script:
   - composer self-update
   - composer install --no-interaction
 
-  # Code Climate testing requirements
+  # Download code climate binaries and set proper permissions
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter 
   - chmod +x ./cc-test-reporter 
+
+  # Notify code climate of an incoming coverage payload
   - ./cc-test-reporter before-build
 
 script:
@@ -28,12 +30,20 @@ script:
 
   # Assure databases are setup and seeded
   - php artisan migrate
+  - php artisan migrate --path=database/migrations/q-a
   - php artisan db:seed
 
-  # Testing and code coverage
-  - vendor/bin/phpunit --testsuite=Unit --coverage-text --coverage-clover "clover.xml"
+  # Run php tests. 
+  # Test output ./tests/test_output/php/clover.xml -> partial-formatting ./tests/coverage/codeclimate.php_coverage.json
+  - vendor/bin/phpunit --testsuite=Unit --coverage-text --coverage-clover "tests/test_output/php/clover.xml"
+  - ./cc-test-reporter format-coverage --output "coverage/codeclimate.php_coverage.json" tests/test_output/php/clover.xml
+
+  # Run react tests. 
+  # Test output ./tests/test_output/react/clover.xml -> partial-formatting ./tests/coverage/codeclimate.react_coverage.json
+  - npm test
+  - ./cc-test-reporter format-coverage --output "coverage/codeclimate.react_coverage.json" tests/test_output/react/clover.xml
 
 after_script:
-  # Testing and code coverage
-  - ./cc-test-reporter after-build --coverage-input-type clover --exit-code $TRAVIS_TEST_RESULT
-
+  # Sum the partial coverage files outputs coverage/codeclimate.json
+  - ./cc-test-reporter sum-coverage --parts 2 coverage/codeclimate.*.json
+  - ./cc-test-reporter upload-coverage

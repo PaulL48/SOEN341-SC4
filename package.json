@@ -73,6 +73,8 @@
         "moduleNameMapper": {
             "\\.(css|scss)$": "<rootDir>/__mock__/styleMock.js"
         },
-        "setupTestFrameworkScriptFile": "./resources/assets/test/setupTests.js"
+        "setupTestFrameworkScriptFile": "./resources/assets/test/setupTests.js",
+        "collectCoverage": true,
+        "coverageDirectory": "./tests/test_output/react"
     }
 }
