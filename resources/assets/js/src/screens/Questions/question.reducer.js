@@ -1,6 +1,6 @@
 import {
     SET_CURRENT_QUESTION
-} from './question.type'
+} from './question.type';
 
 const initialState = {
     error: null,
@@ -12,7 +12,8 @@ const initialState = {
         created_at : "",
         resolved: 0
     },
-    isFetchingQuestion: false
+    isFetchingQuestion: false,
+    searchFunctions: 'test'
 };
 
 export const questionReducer = (state = initialState, action) =>{

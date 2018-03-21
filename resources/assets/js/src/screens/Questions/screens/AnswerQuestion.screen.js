@@ -154,7 +154,7 @@ export class AnswerQuestion extends Component {
         if(this.state.currentAnswers.length !== 0){
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div>
+                <div key={index}>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                     <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>

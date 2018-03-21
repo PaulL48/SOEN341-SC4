@@ -1,11 +1,12 @@
 import React,{PureComponent} from 'react';
 import {Link} from 'react-router-dom';
+import {Input} from 'antd';
 import {connect} from 'react-redux';
 import {signOutAction} from '../screens';
 
 const mapStateToProps = state =>({
     isLoggedIn: state.auth.isLoggedIn,
-    currentUser : state.auth.currentUser
+    currentUser : state.auth.currentUser,
 });
 const mapDispatchToProps = dispatch =>({
     signOutActionDispatch : () => dispatch(signOutAction()),
@@ -68,6 +69,11 @@ export class HeaderComponent extends PureComponent{
                             &nbsp;
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
+                            <Input.Search
+                            placeholder="Search here ..."
+                            onChange={value => console.log(this.props)}
+                            style={{ width: 200 }}
+                            />
                             {this.handleAuth()}            
                         </ul>
                     </div>

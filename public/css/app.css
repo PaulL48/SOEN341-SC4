@@ -8420,7 +8420,6 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   width: 80vw;
-  border-bottom: 2px solid #69c0ff;
   padding: 10px;
 }
 
@@ -8429,17 +8428,17 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 70vw;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  border-bottom: 2px solid #69c0ff;
 }
 
 .QTitle {
-  width: 10vw;
+  width: 100%;
   padding-left: 20px;
   font-size: 30px;
 }
@@ -8532,91 +8531,10 @@ body {
   font-size: 30px;
 }
 
-.DisplayRecentQuestion2 {
-  border-top: 2px solid purple;
-  border-bottom: 2px solid purple;
-  font-weight: bold;
-  font-size: 30px;
-}
-
-.fa-check-circle {
-  width: 100%;
-  height: 100%;
-}
-
-.svg-inline--fa {
-  width: 2rem !important;
-}
-
-.fa-check-circle :hover {
-  fill: green;
-  cursor: pointer;
-}
-
-.fa-times-circle :hover {
-  fill: red;
-  cursor: pointer;
-}
-
-.AnswerAccept {
-  margin-top: 300px;
-  text-align: center;
-}
-
-.AnswerAccept-best {
-  width: 30px;
-  height: 30px;
-  line-height: 1;
-}
-
-.AnswerAccept-h1 {
-  margin-top: 2px;
-  height: 26px;
-  font-size: 20px;
-  color: #35b558;
-  font-Family: Microsoft YaHei;
-  font-Weight: bolder;
-  margin-right: 500px;
-}
-
-.AnswerAccept-accept {
-  font-size: 14px;
-  color: #33b358;
-  border: 1px solid #cfd7dc;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-  display: inline-block;
-  font-Family: Microsoft YaHei;
-  font-Weight: bolder;
-  margin-left: 10px;
-  margin-top: 250px;
-}
-
-.AnswerAccept-reject {
-  font-size: 14px;
-  color: #33b358;
-  border: 1px solid #cfd7dc;
-  width: 120px;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 3px;
-  display: inline-block;
-  font-Family: Microsoft YaHei;
-  font-Weight: bolder;
-  margin-left: 450px;
-  margin-top: 250px;
-}
-
-.AnswerAccept.answer-best {
-  width: 21px;
-  height: 28px;
-  display: inline-block;
-  vertical-align: middle;
-  background-repeat: no-repeat;
-  color: #4ACA5D;
-  font-size: 80px;
-  margin: 200px;
+.container {
+  margin-right: 10%;
+  margin-left: 10%;
+  padding-left: 0;
+  padding: 0;
 }
 
