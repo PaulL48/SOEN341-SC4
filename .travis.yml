@@ -37,7 +37,7 @@ script:
   # Run php tests. 
   # Test output ./tests/test_output/php/clover.xml -> partial-formatting ./tests/coverage/codeclimate.php_coverage.json
   - vendor/bin/phpunit --testsuite=Unit --coverage-text --coverage-clover "tests/test_output/php/clover.xml"
-  - ./cc-test-reporter format-coverage --input-type clover --output "coverage/codeclimate.php_coverage.json" tests/test_output/php/clover.xml
+  - ./cc-test-reporter format-coverage --debug --input-type clover --output "coverage/codeclimate.php_coverage.json" tests/test_output/php/clover.xml
 
   # Run react tests. 
   # Test output ./tests/test_output/react/clover.xml -> partial-formatting ./tests/coverage/codeclimate.react_coverage.json
