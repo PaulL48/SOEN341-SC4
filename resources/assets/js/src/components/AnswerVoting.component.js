@@ -40,7 +40,7 @@ export class AnswerVoting extends Component {
   render() {
     const {id} = this.props;
     return (
-      <div className="App" style={{display:'flex',flexDirection:'row' , justifyContent:'left',alignItems:'center'}}>
+      <div className="App" style={{width:120,display:'flex',flexDirection:'row' , justifyContent:'left',alignItems:'center'}}>
           <div style={{display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',flexDirection:'row'}}>
               <UpButton handleFunction={()=>this.handleVote(id,upvote)}/> 

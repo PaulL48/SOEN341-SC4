@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 
-class AnswerQuestion extends Component {
+export class AnswerQuestion extends Component {
     constructor(){
         super();
         this.state = {
@@ -29,6 +29,7 @@ class AnswerQuestion extends Component {
             hasAcceptedAnswer: false,
             hasSuggestion: false,
             suggestion:'',
+            suggested_by:'',
         };
         
     }
@@ -48,7 +49,8 @@ class AnswerQuestion extends Component {
             console.log(res);
             this.setState({
                 hasSuggestion : !(res.data.suggestion===""),
-                suggestion: res.data.suggestion
+                suggestion: res.data.suggestion,
+                suggested_by: res.data.suggested_by
             });
            
         });
@@ -63,7 +65,8 @@ class AnswerQuestion extends Component {
 
     handleSuggestionText(e,delta,soure,content){
         this.setState({
-            suggestion: content.getText()
+            suggestion: content.getText(),
+            suggested_by: this.props.currentUser.user.name
         });
     }
 
@@ -77,8 +80,8 @@ class AnswerQuestion extends Component {
             answerQuestion(this.props.history.location.state.id,this.state.answer);
             setTimeout(()=>{ // fake asyncronous method
                 getAnswers(this.props.history.location.state.id).then((res)=>{
-                    this.setState({answerer: res.data.data,currentAnswers: res.data.data});
-                    console.log(res );
+                    this.setState({answerer: this.props.currentUser.user.name,currentAnswers: res.data.data});
+                    console.log(res);
                 }).catch((err)=>{
                     console.log(err);
                 });
@@ -153,7 +156,7 @@ class AnswerQuestion extends Component {
             return(
                 <div>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
-                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/></span>
+                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
                         <span className="AnswerNo">Answer #{index+1}</span>
                         <span className="AnswerText">{currentItem.answer}</span>
@@ -162,7 +165,7 @@ class AnswerQuestion extends Component {
                 </div>  
                     <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}>
                         <div>
-                            <span className="AnswerTextAnswerer">Answered by SOMEONE at SOMETIME</span>
+                            <span className="AnswerTextAnswerer">Answered by {currentItem.answerer} at {currentItem.created_at}</span>
                         </div>
                     </div>
                 </div>
@@ -179,6 +182,7 @@ class AnswerQuestion extends Component {
         if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer && !(this.props.history.location.state.author === this.props.currentUser.user.name)){
             return (
                 <div className="quillSuggestionBox">
+                <div className="AnswerQuestionSuggestion">Suggest an edit for the Question!</div>
                 <Quill
                 theme="snow"
                 modules={this.modules}
@@ -194,7 +198,8 @@ class AnswerQuestion extends Component {
         else if(this.state.hasSuggestion){
             return (
             <div>
-            <span className="AnswerText">Suggestion: {this.state.suggestion} </span>
+            <div className="Suggestion">Suggestion: {this.state.suggestion} </div>
+            <div className="SuggestionAuthor">Suggested by {this.props.currentQuestion.suggested_by}</div>
             {this.props.history.location.state.author === this.props.currentUser.user.name &&
                 <div>
                 <Button className="acceptSuggestion" type="primary" 
@@ -212,22 +217,22 @@ class AnswerQuestion extends Component {
 
     handleAcceptedSuggestion(){
         acceptSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
-        this.props.getQuestionActionDispatch(this.props.history.location.state.id);
-
+        this.setState({hasSuggestion:false, suggested_by:''});
+        setTimeout(()=>{
+            this.props.getQuestionActionDispatch(this.props.history.location.state.id);
+        },500);
     }
     handleDeclinedSuggestion(){
         declineSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
+        this.setState({hasSuggestion:false, suggested_by:''});
     }
-
 
     handleSuggestion(){
         if(this.props.history.location.state.author === this.props.currentUser.user.name){
             alert('You can\'t suggest a change to your own question!');
         }else{
-            suggestQuestion(this.props.history.location.state.id, this.state.suggestion);
-            this.setState({hasSuggestion:true, suggestion:this.state.suggestion});
+            suggestQuestion(this.props.history.location.state.id, this.state.suggestion, this.props.currentUser.user.name);
+            this.setState({suggested_by: this.props.currentUser.user.name ,hasSuggestion:true, suggestion:this.state.suggestion});
            
         }
     }
@@ -258,8 +263,8 @@ class AnswerQuestion extends Component {
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
                     <span className="BlockBetween">The Question</span>
-                    <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
-                    <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
+                    <div className="AnswerQuestion" style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
+                        <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id}/></span>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
                         <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
                         <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>    

@@ -18,7 +18,7 @@ export class Voting extends Component {
 
   componentDidMount(){
     setTimeout(()=>{ // fake asyncronous method since we need to wait for the props to be fully updated with the id's
-      this.props.handleRequest().then((res)=>{
+      getVoteCount(this.props.id).then((res)=>{
         this.setState({count: res.data.count});
       }).catch((err)=>{
         console.log(err);
@@ -40,7 +40,7 @@ export class Voting extends Component {
   render() {
     const {id} = this.props;
     return (
-      <div className="App" style={{display:'flex',flexDirection:'row' , justifyContent:'left',alignItems:'center'}}>
+      <div className="App" style={{width:120,display:'flex',flexDirection:'row' , justifyContent:'left',alignItems:'center'}}>
           <div style={{display:'flex',flexDirection:'column'}}>
             <div style={{display:'flex',flexDirection:'row'}}>
               <UpButton handleFunction={()=>this.handleVote(id,upvote)}/> 

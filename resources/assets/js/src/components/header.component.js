@@ -30,9 +30,9 @@ export class HeaderComponent extends PureComponent{
         if(this.props.isLoggedIn){
             return(
                 [
-                    <li style={{fontSize:18}}><Link to="/question/ask">Ask a question</Link></li>,
-                    <li style={{padding:14, fontSize:18}}>Hi {this.props.currentUser.user.name} ! </li>,
-                    <li style={{fontSize:18}}><a onClick={()=>this.handleSignout()}>Log out</a></li>
+                    <li key="1" style={{fontSize:18}}><Link to="/question/ask">Ask a question</Link></li>,
+                    <li key="2" style={{padding:14, fontSize:18}}>Hi {this.props.currentUser.user.name} ! </li>,
+                    <li key="3" style={{fontSize:18}}><a onClick={()=>this.handleSignout()}>Log out</a></li>
                 ]
                
             );

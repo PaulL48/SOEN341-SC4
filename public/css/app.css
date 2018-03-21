@@ -8420,7 +8420,6 @@ body {
       -ms-flex-direction: row;
           flex-direction: row;
   width: 80vw;
-  border-bottom: 2px solid #69c0ff;
   padding: 10px;
 }
 
@@ -8429,17 +8428,17 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 70vw;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+  border-bottom: 2px solid #69c0ff;
 }
 
 .QTitle {
-  width: 10vw;
+  width: 100%;
   padding-left: 20px;
   font-size: 30px;
 }
@@ -8532,10 +8531,30 @@ body {
   font-size: 30px;
 }
 
-.DisplayRecentQuestion2 {
-  border-top: 2px solid purple;
-  border-bottom: 2px solid purple;
+.navbar {
+  width: 100vw;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.navbar-brand {
   font-weight: bold;
-  font-size: 30px;
+  font-style: oblique;
+}
+
+.AppWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 

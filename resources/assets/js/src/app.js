@@ -64,19 +64,23 @@ export class App extends Component {
 
     render() {
         return (
-            <div className="AppWrapper" >
-                <Header/>
-                    <div className="flex-center position-ref full-height">
-                    <div className="content">
-                        <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
-                        <div>
-                            <div className="DisplayRecentQuestion">
-                                Here are the most recent Questions
+            <div>
+                <div>
+                    <Header/>
+                </div>
+                <div className="container" >
+                        <div className="flex-center position-ref full-height">
+                        <div className="content">
+                            <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
+                            <div>
+                                <div className="DisplayRecentQuestion">
+                                    <span>Below are the Questions!</span>
+                                    <span></span>
+                                </div>
                             </div>
-                            
-
+                            <ListC data={this.state.data} />
+                            <div style={{marginBottom:"2rem"}}></div>
                         </div>
-                        <ListC data={this.state.data}/>
                     </div>
                 </div>
             </div>
