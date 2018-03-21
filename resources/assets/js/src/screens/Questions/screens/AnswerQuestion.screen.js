@@ -40,7 +40,7 @@ export class AnswerQuestion extends Component {
     componentDidMount(){
         console.log(this.props);
         getAnswers(this.props.history.location.state.id).then((res)=>{
-            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
+            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted, });
             console.log(res);
         }).catch((err)=>{
             console.log(err);
@@ -154,7 +154,7 @@ export class AnswerQuestion extends Component {
         if(this.state.currentAnswers.length !== 0){
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div>
+                <div key={index}>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                     <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
@@ -198,8 +198,9 @@ export class AnswerQuestion extends Component {
         else if(this.state.hasSuggestion){
             return (
             <div>
-            <div className="Suggestion">Suggestion: {this.state.suggestion} </div>
-            <div className="SuggestionAuthor">Suggested by {this.props.currentQuestion.suggested_by}</div>
+            <div className="Suggestion">Suggestion: </div>
+            <div className="Suggestion2"> {this.state.suggestion} </div>
+            <div className="SuggestionAuthor">Suggested by {this.state.suggested_by}</div>
             {this.props.history.location.state.author === this.props.currentUser.user.name &&
                 <div>
                 <Button className="acceptSuggestion" type="primary" 

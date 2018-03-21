@@ -18,7 +18,8 @@ export class Voting extends Component {
 
   componentDidMount(){
     setTimeout(()=>{ // fake asyncronous method since we need to wait for the props to be fully updated with the id's
-      getVoteCount(this.props.id).then((res)=>{
+
+    getVoteCount(this.props.id).then((res)=>{
         this.setState({count: res.data.count});
       }).catch((err)=>{
         console.log(err);

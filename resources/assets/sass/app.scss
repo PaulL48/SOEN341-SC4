@@ -24,6 +24,8 @@ html, body {
 .flex-center {
     align-items: left;
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .position-ref {
@@ -31,9 +33,13 @@ html, body {
 }
 
 .top-right {
-    position: absolute;
-    right: 10px;
-    top: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    width:100vw;
+    height:10vh;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .content {
@@ -170,7 +176,12 @@ html, body {
 .navbar{
     width: 100vw;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-   
+}
+
+.container{
+    padding-left: 0;
+    padding: 0;
+
 }
 .navbar-brand{
     font-weight: bold;

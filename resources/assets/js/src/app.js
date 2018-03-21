@@ -100,6 +100,13 @@ export class App extends Component {
                             {this.handleAuth()}
                         </div>
                     <div className="content">
+                            <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
+                            <div>
+                                <div className="DisplayRecentQuestion">
+                                    <span>Below are the Questions!</span>
+                                    <span></span>
+                                </div>
+                            </div>
                         <ListC data={this.state.results}/>
                     </div>
                 </div>
@@ -109,7 +116,3 @@ export class App extends Component {
 }
 
 export const AppScreen = connect(mapStateToProps,mapDispatchToProps)(App);
-
-
-
-
