@@ -17,6 +17,7 @@ before_script:
   - cp .env.travis .env
   - composer self-update
   - composer install --no-interaction
+  - npm install jest
 
   # Download code climate binaries and set proper permissions
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter 
