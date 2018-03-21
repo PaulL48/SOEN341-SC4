@@ -20,7 +20,6 @@ export class Login extends Component {
             email: '',
             password: ''
         };
-        this.token = document.head.querySelector('meta[name="csrf-token"]').content;
     }
 
     handleLogin(e){
@@ -52,7 +51,7 @@ export class Login extends Component {
                             <div className="panel-heading">Login</div>
                             <div className="panel-body">
                                 <form className="form-horizontal" onSubmit={(e)=>this.handleLogin(e)}>
-                                <input type="hidden" name="_token" value={this.token}/>
+                                <meta name="csrf-token" content="{{ csrf_token() }}"/>
                                     <div className="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
                                         <label htmlFor="email" className="col-md-4 control-label">E-Mail Address</label>
 
