@@ -42,7 +42,7 @@ script:
   # Run react tests. 
   # Test output ./tests/test_output/react/clover.xml -> partial-formatting ./tests/coverage/codeclimate.react_coverage.json
   - npm test
-  - ./cc-test-reporter format-coverage --input-type clover --output "coverage/codeclimate.react_coverage.json" tests/test_output/react/clover.xml
+  - ./cc-test-reporter format-coverage tests/test_output/react/clover.xml --input-type clover --output "coverage/codeclimate.react_coverage.json" 
 
 after_script:
   # Sum the partial coverage files outputs coverage/codeclimate.json
