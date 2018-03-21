@@ -179,7 +179,8 @@ export class AnswerQuestion extends Component {
     }}  
 
     showSuggestionBox(){
-        if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer && !(this.props.history.location.state.author === this.props.currentUser.user.name)){
+        if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer &&
+             !(this.props.history.location.state.author === this.props.currentUser.user.name) && this.props.isLoggedIn){
             return (
                 <div className="quillSuggestionBox">
                 <div className="AnswerQuestionSuggestion">Suggest an edit for the Question!</div>
