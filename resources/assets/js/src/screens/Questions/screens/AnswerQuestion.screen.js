@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Header,AnswerVoting} from '../../../components';
+import {Header,AnswerVoting,Voting} from '../../../components';
 import {connect} from 'react-redux';
 import Quill from 'react-quill';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -22,11 +22,14 @@ export class AnswerQuestion extends Component {
     constructor(){
         super();
         this.state = {
+            answerer: '',
+            answerTime: '',
             answer:'',
             currentAnswers: [],
             hasAcceptedAnswer: false,
             hasSuggestion: false,
             suggestion:'',
+            suggested_by:'',
         };
         
     }
@@ -37,7 +40,7 @@ export class AnswerQuestion extends Component {
     componentDidMount(){
         console.log(this.props);
         getAnswers(this.props.history.location.state.id).then((res)=>{
-            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer:res.data.hasAccepted});
+            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
             console.log(res);
         }).catch((err)=>{
             console.log(err);
@@ -45,8 +48,9 @@ export class AnswerQuestion extends Component {
         getSuggestion(this.props.history.location.state.id).then((res)=>{
             console.log(res);
             this.setState({
-                hasSuggestion : !(res.data.suggestion===null),
-                suggestion: res.data.suggestion
+                hasSuggestion : !(res.data.suggestion===""),
+                suggestion: res.data.suggestion,
+                suggested_by: res.data.suggested_by
             });
            
         });
@@ -61,7 +65,8 @@ export class AnswerQuestion extends Component {
 
     handleSuggestionText(e,delta,soure,content){
         this.setState({
-            suggestion: content.getText()
+            suggestion: content.getText(),
+            suggested_by: this.props.currentUser.user.name
         });
     }
 
@@ -75,7 +80,7 @@ export class AnswerQuestion extends Component {
             answerQuestion(this.props.history.location.state.id,this.state.answer);
             setTimeout(()=>{ // fake asyncronous method
                 getAnswers(this.props.history.location.state.id).then((res)=>{
-                    this.setState({currentAnswers: res.data.data});
+                    this.setState({answerer: this.props.currentUser.user.name,currentAnswers: res.data.data});
                     console.log(res);
                 }).catch((err)=>{
                     console.log(err);
@@ -149,20 +154,27 @@ export class AnswerQuestion extends Component {
         if(this.state.currentAnswers.length !== 0){
         return this.state.currentAnswers.map((currentItem,index)=>{
             return(
-                <div key={index} style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
-                    <AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/>
+                <div>
+                <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
+                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
-                        <span className="AnswerText" style={{fontSize:30,margin:30}}>Answer #{index+1}</span>
+                        <span className="AnswerNo">Answer #{index+1}</span>
                         <span className="AnswerText">{currentItem.answer}</span>
                     </div>
                     {this.handleAcceptedLogo(currentItem)}
+                </div>  
+                    <div style={{display: 'flex', flexDirection:'row', width: "50vw",borderBottomStyle: "solid",borderBottomColor: "#69c0ff"}}>
+                        <div>
+                            <span className="AnswerTextAnswerer">Answered by {currentItem.answerer} at {currentItem.created_at}</span>
+                        </div>
+                    </div>
                 </div>
                 );
             }
         );
     }else{
         return(
-            <span className="AnswerText">There are currently<br/> no answer for this question!</span>
+            <span className="AnswerNoText">There are currently<br/> no answer for this question!</span>
         );
     }}  
 
@@ -170,6 +182,7 @@ export class AnswerQuestion extends Component {
         if(!this.state.hasSuggestion && !this.state.hasAcceptedAnswer && !(this.props.history.location.state.author === this.props.currentUser.user.name)){
             return (
                 <div className="quillSuggestionBox">
+                <div className="AnswerQuestionSuggestion">Suggest an edit for the Question!</div>
                 <Quill
                 theme="snow"
                 modules={this.modules}
@@ -185,7 +198,8 @@ export class AnswerQuestion extends Component {
         else if(this.state.hasSuggestion){
             return (
             <div>
-            <span className="AnswerText">Suggestion: {this.state.suggestion} </span>
+            <div className="Suggestion">Suggestion: {this.state.suggestion} </div>
+            <div className="SuggestionAuthor">Suggested by {this.props.currentQuestion.suggested_by}</div>
             {this.props.history.location.state.author === this.props.currentUser.user.name &&
                 <div>
                 <Button className="acceptSuggestion" type="primary" 
@@ -203,24 +217,22 @@ export class AnswerQuestion extends Component {
 
     handleAcceptedSuggestion(){
         acceptSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
+        this.setState({hasSuggestion:false, suggested_by:''});
         setTimeout(()=>{
             this.props.getQuestionActionDispatch(this.props.history.location.state.id);
         },500);
-        
     }
     handleDeclinedSuggestion(){
         declineSuggestion(this.props.history.location.state.id);
-        this.setState({hasSuggestion:false});
+        this.setState({hasSuggestion:false, suggested_by:''});
     }
-
 
     handleSuggestion(){
         if(this.props.history.location.state.author === this.props.currentUser.user.name){
             alert('You can\'t suggest a change to your own question!');
         }else{
-            suggestQuestion(this.props.history.location.state.id, this.state.suggestion);
-            this.setState({hasSuggestion:true, suggestion:this.state.suggestion});
+            suggestQuestion(this.props.history.location.state.id, this.state.suggestion, this.props.currentUser.user.name);
+            this.setState({suggested_by: this.props.currentUser.user.name ,hasSuggestion:true, suggestion:this.state.suggestion});
            
         }
     }
@@ -246,15 +258,24 @@ export class AnswerQuestion extends Component {
     
     render() {
         return (
-            <div style={{margin:20}}>
+            <div>
                 <Header/>
                 <div className="AskQuestion-wrapper">
                 <div className="inner-wrapper">
-                    <span className="AnswerText" style={{fontSize:20}}>question</span>
-                    <span className="AnswerText" style={{fontSize:30,margin:30}}>{this.props.currentQuestion.question}</span>
-                    {this.showSuggestionBox()}
+                    <span className="BlockBetween">The Question</span>
+                    <div className="AnswerQuestion" style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
+                        <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id}/></span>
+                    <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
+                        <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
+                        <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>    
+                     {this.showSuggestionBox()}
+                    </div></div>
+                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.history.location.state.time}</span>
+                    
+                    <span className="BlockBetween">The Answers</span>
+                   
                     {this.handleDisplayAnswers()}
-                    <span className="AnswerText">Your answer</span>
+                    <span className="AnswerPostAnswer">Post an answer!</span>
                     <Quill
                     theme="snow"
                     modules={this.modules}

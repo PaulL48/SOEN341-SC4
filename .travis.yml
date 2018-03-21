@@ -28,6 +28,14 @@ script:
 
   # Assure databases are setup and seeded
   - php artisan migrate
+<<<<<<< HEAD
+  - php artisan migrate --path=/database/migrations/qa
+=======
+<<<<<<< HEAD
+=======
+  - php artisan migrate --path=/database/migrations/qa
+>>>>>>> test_rz2
+>>>>>>> EditQuestionPage
   - php artisan db:seed
 
   # Testing and code coverage

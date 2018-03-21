@@ -30,7 +30,7 @@ export const answerQuestion = (question_id,answer) =>{
 
 export const getQuestions = () =>{
     return Axios.get('/questions');
-}
+};
 
 export const getQuestion = (id) =>{
     return Axios.request({
@@ -38,36 +38,39 @@ export const getQuestion = (id) =>{
         params: {
             id
         }
-    })
-}
+    });
+};
 
-export const suggestQuestion = (question_id, suggestion) =>{
+export const suggestQuestion = (question_id, suggestion, suggested_by) =>{
     return Axios.request({
         method:'post',
         url:'/insertSuggestion',
         data:{
             question_id,
-            suggestion
+            suggestion,
+            suggested_by
         }
     });
 };
 
-export const acceptSuggestion = (question_id) =>{
+export const acceptSuggestion = (question_id, suggested_by) =>{
     return Axios.request({
         method:'post',
         url:'/acceptSuggestion',
         data:{
-            question_id
+            question_id,
+            suggested_by
         }
     });
 };
 
-export const declineSuggestion = (question_id) =>{
+export const declineSuggestion = (question_id, suggested_by) =>{
     return Axios.request({
         method:'post',
         url:'/declineSuggestion',
         data:{
-            question_id
+            question_id,
+            suggested_by
         }
     });
 };

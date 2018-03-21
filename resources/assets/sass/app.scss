@@ -37,7 +37,6 @@ html, body {
 }
 
 .content {
-    padding-top: 40px;
     text-align: left;
 }
 
@@ -69,19 +68,20 @@ html, body {
     display: flex;
     flex-direction: row;
     width: 80vw;
-    border-bottom: 2px solid #69c0ff;
     padding: 10px;
 }
 
 .QAuthor {
     text-align: right;
     display: flex;
-    width:70vw;
     justify-content: flex-end;
     align-items: flex-end;
+    border-bottom: 2px solid #69c0ff;
 }
 .QTitle{
-    width: 10vw;
+    width: 100%;
+    padding-left: 20px;
+    font-size: 30px;
 }
 
 .fa-check-circle{
@@ -159,4 +159,27 @@ html, body {
     color: #4ACA5D;
     font-size: 80px;
     margin:200px;
+}
+.DisplayRecentQuestion{
+    border-top: 2px solid cadetblue;
+    border-bottom: 2px solid cadetblue;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.navbar{
+    width: 100vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+}
+.navbar-brand{
+    font-weight: bold;
+    font-style: oblique;
+    
+}
+.AppWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

@@ -1,14 +1,100 @@
 .QuillAnswer{
     
 }
+
 .inner-wrapper{
     width:50vw;
 }
-.AnswerText{
+.AnswerQuestionTitle{
     font-weight:bold;
     font-size:1rem;
+    color:rgb(133, 19, 133);
+    align-self:center;
+    text-align:center;
+    margin:1rem;
+}
+.AnswerQuestionText{
+    font-size:1.5rem;
+    font-family: Arial, Helvetica, sans-serif;
     color:black;
     align-self:center;
-    text-align: center;
+    text-align:center;
+    margin-left:2rem;
+}
+.AnswerQuestionAuthor{
+    width:50vw;
+    display:inline-block;
+    text-align: right;
+}
+.BlockBetween{
+    width:50vw;
+    font-weight:bold;
+    font-size:2.5rem;
+    color:rgb(33, 81, 212);
+    align-self:left;
+    text-align:left;
+    padding:1rem;
+    
+    border-bottom: 3px solid #00d084;
+}
+.AnswerNo{
+    font-weight:bold;
+    font-size:2rem;
+    color:#DB3A34;
+    width:35vw;
+    display:inline-block;
+    text-align: left;
+    margin: 2px;
+}
+.AnswerText{
+    font-size:1rem;
+    color:black;
+    align-self:left;
+    text-align:left;
+    margin-left:1rem;
+    
+}
+.AnswerPostAnswer{
+    font-weight:bold;
+    font-size:2rem;
+    color: #084C61;
+    align-self:left;
+    text-align:left;
     margin:1rem;
+}
+.AnswerVotingBlock {
+    width: 8rem;
+}
+.QuestionVotingBlock{       
+    width: 8rem;
+}
+
+.AnswerTextAnswerer{
+    width:50vw;
+    display:inline-block;
+    text-align: right;
+}
+.AnswerQuestionBlock{
+    border-bottom: 3px solid #00d084;
+    margin-top: 3px;
+}
+.AnswerQuestionSuggestion{
+    font-weight:bold;
+    font-size:2rem;
+    color: #084C61;
+    align-self:left;
+    text-align:left;
+    margin:1rem;
+}
+.Suggestion {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+.SuggestionAuthor {
+    text-align: right;
+    border-bottom: 3px solid #00d084;
+}
+.quillSuggestionBox {
+    padding-bottom: 1rem;
+    border-bottom: 3px solid #00d084;
 }
