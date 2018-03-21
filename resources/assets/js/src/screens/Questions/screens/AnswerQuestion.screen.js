@@ -40,7 +40,7 @@ export class AnswerQuestion extends Component {
     componentDidMount(){
         console.log(this.props);
         getAnswers(this.props.history.location.state.id).then((res)=>{
-            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted});
+            this.setState({currentAnswers: res.data.data,hasAcceptedAnswer: res.data.hasAccepted, });
             console.log(res);
         }).catch((err)=>{
             console.log(err);
@@ -156,7 +156,7 @@ export class AnswerQuestion extends Component {
             return(
                 <div>
                 <div style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
-                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id} handleRequest={()=>this.handleData(currentItem.id)}/></span>
+                    <span className="AnswerVotingBlock"><AnswerVoting id={currentItem.id}/></span>
                     <div style={{display:'flex',flexDirection:'column'}}>
                         <span className="AnswerNo">Answer #{index+1}</span>
                         <span className="AnswerText">{currentItem.answer}</span>
@@ -198,8 +198,9 @@ export class AnswerQuestion extends Component {
         else if(this.state.hasSuggestion){
             return (
             <div>
-            <div className="Suggestion">Suggestion: {this.state.suggestion} </div>
-            <div className="SuggestionAuthor">Suggested by {this.props.currentQuestion.suggested_by}</div>
+            <div className="Suggestion">Suggestion: </div>
+            <div className="Suggestion2"> {this.state.suggestion} </div>
+            <div className="SuggestionAuthor">Suggested by {this.state.suggested_by}</div>
             {this.props.history.location.state.author === this.props.currentUser.user.name &&
                 <div>
                 <Button className="acceptSuggestion" type="primary" 
@@ -264,7 +265,7 @@ export class AnswerQuestion extends Component {
                 <div className="inner-wrapper">
                     <span className="BlockBetween">The Question</span>
                     <div className="AnswerQuestion" style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
-                        <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id} handleRequest={()=>this.handleData(this.props.history.location.state.id)}/></span>
+                        <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id}/></span>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
                         <span className="AnswerQuestionTitle">{this.props.currentQuestion.title}</span>
                         <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>
