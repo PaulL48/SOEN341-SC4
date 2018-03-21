@@ -24,8 +24,11 @@ class AnswerController extends Controller
         $user_id = Auth::id();
         $votes = 0;
         $accepted = 0;
+
+        $answerer = DB::table('users')->select('name')->where('id',$user_id)->first();
+        $answererValue = $answerer->name;
         
-        $data = array('question_id'=>$question_id, 'answer'=> $answer, 'user_id'=>$user_id, 'votes'=> $votes,'accepted'=>$accepted,'created_at' => Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'));
+        $data = array('question_id'=>$question_id, 'answer'=> $answer,'answerer'=>$answererValue, 'user_id'=>$user_id, 'votes'=> $votes,'accepted'=>$accepted,'created_at' => Carbon::now()->format('Y-m-d H:i:s'),'updated_at'=>Carbon::now()->format('Y-m-d H:i:s'));
         
         DB::table('answers')->insert($data);
 

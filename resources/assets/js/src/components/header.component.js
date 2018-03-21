@@ -30,8 +30,9 @@ export class HeaderComponent extends PureComponent{
         if(this.props.isLoggedIn){
             return(
                 [
-                    <li key="1"><a>Profile</a></li>,
-                    <li key="2"><a onClick={()=>this.handleSignout()}>Log out</a></li>
+                    <li key="1" style={{fontSize:18}}><Link to="/question/ask">Ask a question</Link></li>,
+                    <li key="2" style={{padding:14, fontSize:18}}>Hi {this.props.currentUser.user.name} ! </li>,
+                    <li key="3" style={{fontSize:18}}><a onClick={()=>this.handleSignout()}>Log out</a></li>
                 ]
                
             );
@@ -48,9 +49,9 @@ export class HeaderComponent extends PureComponent{
     render(){
         return(
             <div id="app">
-            <nav className="navbar navbar-default navbar-static-top">
+            <nav className="navbar navbar-default navbar-static-top" style={{marginBottom:10}}>
                 <div className="container">
-                    <div className="navbar-header">
+                    <div className="navbar-header" style={{}}>
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                             <span className="sr-only">Toggle Navigation</span>
                             <span className="icon-bar"></span>
