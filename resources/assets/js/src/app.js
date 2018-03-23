@@ -90,7 +90,7 @@ export class App extends Component {
             <div className="container" >
                     <div className="flex-center position-ref full-height">
                         <div className="top-right links">
-                            <Link to="/">SOEN341-SC4</Link>
+                            <Link className="homepage" to="/" style={{fontWeight:"bold",fontStyle:"oblique",fontSize:18}}>SOEN341SC4</Link>
                             <Input.Search
                             placeholder="Search here ..."
                             onChange={value => this.handleSearchQuestions(value)}
@@ -99,6 +99,7 @@ export class App extends Component {
                             <Link to="/question/ask">Ask a question</Link>
                             {this.handleAuth()}
                         </div>
+                        
                     <div className="content">
                             <span style={{fontWeight:"bold",fontSize:60,display:"flex",justifyContent:"center",textAlign:"center"}}>Welcome to SOEN341-SC4!</span>
                             <div>

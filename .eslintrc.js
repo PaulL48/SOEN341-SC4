@@ -5,11 +5,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-<<<<<<< HEAD
-    jest:true,
-=======
     jest: true
->>>>>>> EditQuestionPage
   },
   globals: {
     React: true
