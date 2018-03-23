@@ -4,13 +4,14 @@
 
 .inner-wrapper{
     width:50vw;
+    margin-bottom: 2rem;
 }
 .AnswerQuestionTitle{
     font-weight:bold;
     font-size:1rem;
     color:rgb(133, 19, 133);
-    align-self:center;
-    text-align:center;
+    align-self:left;
+    text-align:left;
     margin:1rem;
 }
 .AnswerQuestionText{
@@ -87,8 +88,14 @@
     margin:1rem;
 }
 .Suggestion {
-    padding: 1rem;
-    font-size: 1.2rem;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    color:rgb(33, 81, 212);
+    font-weight: bold;
+}
+.Suggestion2 {
+    padding-left: 1.5rem;
+    font-size: 1.2rem
 }
 .SuggestionAuthor {
     text-align: right;
