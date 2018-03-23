@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testUserExist()
     {
         // Create Test User

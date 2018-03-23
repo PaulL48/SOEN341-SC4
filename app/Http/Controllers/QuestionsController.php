@@ -56,9 +56,10 @@ class QuestionsController extends BaseController{
         }
 
         // Extract data from request
-        $question = [ 'title'    => $request->input('title'),
-                      'question' => $request->input('question'),
-                      'user_id'  => $request->input('user_id')];
+        $question = [ 'title'      => $request->input('title'),
+                      'question'   => $request->input('question'),
+                      'user_id'    => $request->input('user_id'),
+                      'created_at' => Carbon::now()->format('Y-m-d H:i:s')];
 
         // Push data to database
         $questionId = DB::table('questions')->insertGetId($question);
