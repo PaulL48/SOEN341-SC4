@@ -10,6 +10,7 @@ use App\Question;
 use Illuminate\Foundation\Testing\Concerns\ImpersonatesUsers;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Carbon\Carbon;
 
 class QuestionTest extends TestCase{   
     // Isolate manipulations to the database
@@ -49,7 +50,16 @@ class QuestionTest extends TestCase{
     }
 
     public function testGetSuggestion(){
-        $this->assertTrue(false);
+        //set up test data
+        
+        $question =['title'=>"HI",
+                    'question'=>"hello world!",
+                    'user_id'=>"666",
+                    'created_at'=>Carbon::now()];
+
+        DB::table('questions')->insert($question);
+        //perform test
+       // $this->get('/question', /*supply data to function*/ )
     }
 
     public function testAcceptSuggestion(){
