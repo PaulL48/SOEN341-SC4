@@ -92,9 +92,10 @@ class QuestionsController extends BaseController{
 
     public function retrieveSuggestion(Request $req){
         $suggestion = DB::table('questions')->where('id', $req->input('question_id'))->value('suggestion');
-
+        $suggested_by = DB::table('questions')->where('id', $req->input('question_id'))->value('suggested_by');
         return response()->json([
-            'suggestion' => $suggestion
+            'suggestion' => $suggestion,
+            'suggested_by' => $suggested_by
         ]);
     }
 

@@ -15,7 +15,6 @@ export class RegisterScreen extends Component {
                 },
             ]
         };
-        this.token = document.head.querySelector('meta[name="csrf-token"]').content;
     }
 
     render() {
@@ -30,7 +29,7 @@ export class RegisterScreen extends Component {
 
                             <div className="panel-body">
                                 <form className="form-horizontal" method="POST" action="/register">
-                                <input type="hidden" name="_token" value={this.token}/>
+                                <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
                                     <div className="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                                         <label htmlFor="name" className="col-md-4 control-label">Name</label>

@@ -5,7 +5,17 @@ import { expect } from 'chai';
 
 
 describe('AskQuestion item', () => {
-      const wrapper = shallow(<AskQuestion />);  
+      let router = {
+            location:{
+                state: {
+                    id:1,
+                    author:''
+                }
+            },
+            push:()=>{}
+        }
+        let currentUser = {user:{name:''}}
+      const wrapper = shallow(<AskQuestion history={router} currentUser={currentUser} />);  
       it('should be a div item', () => { 
              expect(wrapper.type()).to.eql('div');  });
 });
