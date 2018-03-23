@@ -33,6 +33,7 @@ html, body {
 }
 
 .top-right {
+    position: absolute;
     display: flex;
     align-items: center;
     text-align: center;
@@ -44,6 +45,8 @@ html, body {
 
 .content {
     text-align: left;
+    margin-top:10vh;
+    margin-bottom: 2rem;
 }
 
 .title {

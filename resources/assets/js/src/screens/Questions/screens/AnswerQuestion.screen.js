@@ -174,7 +174,7 @@ export class AnswerQuestion extends Component {
         );
     }else{
         return(
-            <span className="AnswerNoText">There are currently<br/> no answer for this question!</span>
+            <span className="AnswerNoText">There are currently no answer for this question!</span>
         );
     }}  
 
@@ -267,14 +267,16 @@ export class AnswerQuestion extends Component {
                     <div className="AnswerQuestion" style={{display:'flex',flexDirection:'row',justifyContent:'left',alignItems:'left'}}>
                         <span className="QuestionVotingBlock"><Voting id={this.props.history.location.state.id}/></span>
                     <div style={{display:'flex',flexDirection:'column',alignItems:'right'}}>
-                        <span className="AnswerQuestionTitle">{this.props.history.location.state.title}</span>
-                        <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>    
-                     {this.showSuggestionBox()}
+                        <span className="AnswerQuestionTitle">{this.props.currentQuestion.title}</span>
+                        <span className="AnswerQuestionText">{this.props.currentQuestion.question}</span>
                     </div></div>
-                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.history.location.state.time}</span>
-                    
+                    <span className="AnswerQuestionAuthor">Asked by {this.props.history.location.state.author} at {this.props.currentQuestion.created_at}</span>
+                    <div className="AnswerQuestionBlock"></div>
+
+                    {this.showSuggestionBox()}
+
                     <span className="BlockBetween">The Answers</span>
-                   
+
                     {this.handleDisplayAnswers()}
                     <span className="AnswerPostAnswer">Post an answer!</span>
                     <Quill

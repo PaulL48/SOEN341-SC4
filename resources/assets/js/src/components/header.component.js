@@ -69,11 +69,6 @@ export class HeaderComponent extends PureComponent{
                             &nbsp;
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <Input.Search
-                            placeholder="Search here ..."
-                            onChange={value => console.log(this.props)}
-                            style={{ width: 200 }}
-                            />
                             {this.handleAuth()}            
                         </ul>
                     </div>

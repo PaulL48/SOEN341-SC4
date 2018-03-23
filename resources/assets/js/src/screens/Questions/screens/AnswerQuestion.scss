@@ -8,7 +8,7 @@
 }
 .AnswerQuestionTitle{
     font-weight:bold;
-    font-size:1rem;
+    font-size:2rem;
     color:rgb(133, 19, 133);
     align-self:left;
     text-align:left;
@@ -48,7 +48,7 @@
     margin: 2px;
 }
 .AnswerText{
-    font-size:1rem;
+    font-size:1.5rem;
     color:black;
     align-self:left;
     text-align:left;
@@ -104,4 +104,7 @@
 .quillSuggestionBox {
     padding-bottom: 1rem;
     border-bottom: 3px solid #00d084;
+}
+.AnswerNoText {
+    padding: 1rem;
 }
