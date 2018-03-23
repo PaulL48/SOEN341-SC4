@@ -11,6 +11,9 @@ use DB;
 use App\Quotation;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
