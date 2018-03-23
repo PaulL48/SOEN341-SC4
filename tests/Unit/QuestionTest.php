@@ -20,7 +20,7 @@ use App\Question;
 
 class QuestionControllerTest extends TestCase{   
     
-    use RefreshDatabase;   // Isolate manipulations to the database
+    //use RefreshDatabase;   // Isolate manipulations to the database
     use WithoutMiddleware; // Disables need for a valid csrf token
 
     private function actAsMockUser(){
