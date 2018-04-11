@@ -14,8 +14,14 @@ describe('AskQuestion item', () => {
             },
             push:()=>{}
         }
+        let state = {
+            title:'',
+            question: '',
+            resolved:false
+        };
         let currentUser = {user:{name:''}}
-      const wrapper = shallow(<AskQuestion history={router} currentUser={currentUser} />);  
+      const wrapper = shallow(<AskQuestion history={router} currentUser={currentUser} />).setState(state);  
+      console.log(wrapper)
       it('should be a div item', () => { 
              expect(wrapper.type()).to.eql('div');  });
 });
